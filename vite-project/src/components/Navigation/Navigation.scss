@@ -1,0 +1,26 @@
+@import '../../style/variables.scss';
+@import '../../style/mixins.scss';
+
+.navigation {
+  &__link {
+    padding-bottom: 4px;
+    font-size: 20px;
+    font-weight: 700;
+    @include bg-text;
+    list-style-type: none;
+    border-bottom: 3px solid transparent;
+    transition: border-color $transition;
+
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+
+    &:hover {
+      background-image: $hover;
+    }
+
+    &.active {
+      border-color: $color-main-second;
+    }
+  }
+}
