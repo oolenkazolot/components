@@ -1,3 +1,33 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('./assets/font/fonts/icomoon.eot?exs7ps');
+  src: url('./assets/font/fonts/icomoon.eot?exs7ps#iefix') format('embedded-opentype'), url('./assets/font/fonts/icomoon.ttf?exs7ps') format('truetype'),
+    url('./assets/font/fonts/icomoon.woff?exs7ps') format('woff'), url('./assets/font/fonts/icomoon.svg?exs7ps#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+  content: '\e900';
+}
+
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
