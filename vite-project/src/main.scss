@@ -1,3 +1,5 @@
+@import './style/variables.scss';
+
 @font-face {
   font-family: 'icomoon';
   src: url('./assets/font/fonts/icomoon.eot?exs7ps');
@@ -28,7 +30,11 @@
   content: '\e900';
 }
 
+.icon-shopping-cart:before {
+  content: '\e901';
+}
+
 body {
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Inter', sans-serif;
 }

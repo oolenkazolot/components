@@ -1,28 +1,21 @@
 // color
 $color-main: #f60e50;
 $color-main-second: #e93478;
-
 $color-second: #20063a;
+
 // $color-lavender-blush: #feecf4;
 // $color-sugar-plum: #4b2738;
 // $color-dark-blue: #333e48;
-$color-gray: #878787;
-// $color-black: #000;
+// $color-gray: #878787;
+$color-black: #000;
 // $color-white: #fff;
 // $color-pink: #f773b1;
 // $color-error: red;
 // $color-grey-violet: rgb(58, 57, 58);
-$color-grey-light: rgb(158, 156, 158);
-
-// color bmi
-// $color-blue: #01b4bc;
-// $color-green: #5fa55a;
-// $color-yellow: #f6d51f;
-// $color-orange: #fa8925;
-// $color-red: #fa5457;
+// $color-grey-light: rgb(158, 156, 158);
 
 // background
-// $bg-light-gray: #efefef;
+$bg-light-gray: #efefef;
 // $bg-pink: linear-gradient(270deg, #f60e50 0%, #db5ba1 100%);
 // $bg-pink-light: linear-gradient(90deg, rgba(255, 192, 203, 1) 0%, rgba(245, 237, 238, 1) 100%);
 // $bg-pink-light2: linear-gradient(90deg, rgba(219, 91, 161, 0.6) 0%, rgba(245, 237, 238, 1) 100%);
@@ -33,5 +26,34 @@ $color-grey-light: rgb(158, 156, 158);
 $transition: 0.3s;
 $hover: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), linear-gradient(270deg, #f60e50 0%, #db5ba1 100%);
 
-//border
+// btn
+$active-btn: #db5ba1;
+$hover-btn: rgba(246, 14, 80, 0.7);
+
+// border
 // $color-border: #dbdbdb;
+
+// color
+
+// $color-main: #fd2;
+// $color-dark-blue: #333e48;
+// $color-gray: #878787;
+// $color-black: #000;
+// $color-white: #fff;
+// $color-range: rgb(16, 16, 16);
+// $color-gray20: #333;
+// $color-gray89: #e3e3e3;
+// $color-modal-title: #333b41;
+// $color-error: rgb(230, 43, 43);
+
+// background
+$bg-gray: #e3e3e3;
+// $bg-whitesmoke: #f5f5f5;
+// $bg-orange: #ffa811;
+// $bg-white: #fff;
+
+// another
+// $transition: 0.3s;
+// $hover: #fee456c2;
+
+// $text-shadow: #fc0;

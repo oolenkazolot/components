@@ -1,0 +1,43 @@
+import '../../main.scss';
+import './product.scss';
+
+interface IProduct {
+  title: string;
+  description: string;
+  price: number;
+  discount: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
+export const Product: Function = ({ brand, title, thumbnail, category, discount, rating, stock, price }: IProduct) => {
+  const mainClass: string = 'product';
+  return (
+    <div className={mainClass}>
+      <div className={`${mainClass}__name`}>
+        <div className={`${mainClass}__brand`}>{brand}</div>
+        <div className={`${mainClass}__model`}>{title}</div>
+      </div>
+      <div className={`${mainClass}__display`}>
+        <img className={`${mainClass}__img`} src={thumbnail} alt="product-img" />
+      </div>
+      <div className={`${mainClass}__info`}>
+        <div className={`${mainClass}__category`}>Сategory: {category}</div>
+        <div className={`${mainClass}__discount`}>Discount: {discount}%</div>
+        <div className={`${mainClass}__rating`}>Rating: {rating}</div>
+        <div className={`${mainClass}__stock`}>Stock: {stock}</div>
+      </div>
+      <div className={`${mainClass}__btn-wrap`}>
+        <h3 className={`${mainClass}__price`}>{price} €</h3>
+        <button className={`${mainClass}__btn-details`}>Details</button>
+        <button className={`${mainClass}__btn-cart`}>
+          <i className={`${mainClass}__icon icon-shopping-cart`}></i>
+        </button>
+      </div>
+    </div>
+  );
+};
