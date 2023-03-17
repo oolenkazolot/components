@@ -1,14 +1,26 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins.scss';
 
 .header {
   min-height: 70px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 10px;
   background-color: $color-second;
 
   @media (min-width: 768px) {
     padding: 0 30px;
+  }
+
+  &__title {
+    font-size: 26px;
+    font-weight: 700;
+    @include bg-text;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      padding: 0 30px;
+    }
   }
 }

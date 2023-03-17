@@ -3,10 +3,15 @@ import './Header.scss';
 
 const mainClass: string = 'header';
 
-export const Header: Function = () => {
+interface IHeader {
+  title: string;
+}
+
+export const Header: Function = ({ title }: IHeader) => {
   return (
     <>
       <header className={mainClass}>
+        <div className={`${mainClass}__title`}>{title}</div>
         <Navigation />
       </header>
     </>
