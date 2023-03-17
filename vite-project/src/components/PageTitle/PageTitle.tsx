@@ -1,9 +1,6 @@
 import './PageTitle.scss';
 const mainClass: string = 'page-title';
-
-interface IPageTitle {
-  title: string;
-}
+import { IPageTitle } from '../../models';
 
 export const PageTitle: Function = ({ title }: IPageTitle) => {
   return <h1 className={mainClass}>{title}</h1>;

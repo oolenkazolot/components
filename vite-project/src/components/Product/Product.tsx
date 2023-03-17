@@ -1,18 +1,6 @@
 import '../../main.scss';
 import './product.scss';
-
-interface IProduct {
-  title: string;
-  description: string;
-  price: number;
-  discount: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
+import { IProduct } from '../../models';
 
 export const Product: Function = ({ brand, title, thumbnail, category, discount, rating, stock, price }: IProduct) => {
   const mainClass: string = 'product';

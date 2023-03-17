@@ -1,10 +1,7 @@
 import { Component } from 'react';
+import { ISearchState } from '../../models';
 import './search.scss';
 import '../../main.scss';
-
-interface ISearchState {
-  searchValue: string;
-}
 
 export class Search extends Component {
   private mainClass: string;
@@ -29,7 +26,7 @@ export class Search extends Component {
     return (
       <section className={this.mainClass}>
         <i className={`${this.mainClass}__icon icon-search`}></i>
-        <input className={`${this.mainClass}__input`} value={this.state.searchValue} onChange={(e) => this.updateSearchValue(e.target.value)} type="text" placeholder="Enter text" />
+        <input className={`${this.mainClass}__input`} value={this.state.searchValue} onChange={(e) => this.updateSearchValue(e.target.value)} type="text" placeholder="Search text..." />
       </section>
     );
   }
