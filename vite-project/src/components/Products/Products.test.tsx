@@ -1,9 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { Products } from './Products';
+import { productsData } from '../../utils/products-data';
 
 describe('Products', () => {
   it('renders Products component', () => {
     render(<Products />);
-    expect(screen.getByText(/Products/i)).toBeInTheDocument();
+    productsData.products.forEach((product) => {
+      expect(screen.getByText(product.title)).toBeInTheDocument();
+    });
   });
 });

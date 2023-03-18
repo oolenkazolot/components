@@ -14,7 +14,7 @@ export const Product: Function = ({ brand, title, thumbnail, category, discount,
         <img className={`${mainClass}__img`} src={thumbnail} alt="product-img" />
       </div>
       <div className={`${mainClass}__info`}>
-        <div className={`${mainClass}__category`}>Сategory: {category}</div>
+        <div className={`${mainClass}__category`}>Category: {category}</div>
         <div className={`${mainClass}__discount`}>Discount: {discount}%</div>
         <div className={`${mainClass}__rating`}>Rating: {rating}</div>
         <div className={`${mainClass}__stock`}>Stock: {stock}</div>
