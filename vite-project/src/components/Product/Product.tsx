@@ -2,7 +2,16 @@ import '../../main.scss';
 import './product.scss';
 import { IProduct } from '../../models';
 
-export const Product: Function = ({ brand, title, thumbnail, category, discount, rating, stock, price }: IProduct) => {
+export const Product: Function = ({
+  brand,
+  title,
+  thumbnail,
+  category,
+  discount,
+  rating,
+  stock,
+  price,
+}: IProduct) => {
   const mainClass: string = 'product';
   return (
     <div className={mainClass}>
