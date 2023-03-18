@@ -1,3 +1,7 @@
+export interface IHeader {
+  title: string;
+}
+
 export interface IPageTitle {
   title: string;
 }

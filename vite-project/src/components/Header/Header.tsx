@@ -1,13 +1,10 @@
 import { Navigation } from '../Navigation/Navigation';
 import './Header.scss';
+import { IHeader } from '../../models';
 
-const mainClass: string = 'header';
+const mainClass = 'header';
 
-interface IHeader {
-  title: string;
-}
-
-export const Header: Function = ({ title }: IHeader) => {
+export const Header: (props: IHeader) => JSX.Element = ({ title }: IHeader) => {
   return (
     <>
       <header className={mainClass}>

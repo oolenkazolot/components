@@ -1,7 +1,7 @@
 import { PageTitle } from '../components/PageTitle/PageTitle';
 import { Header } from '../components/Header/Header';
-const mainClass: string = 'main';
-export const AboutPage: Function = () => {
+const mainClass = 'main';
+export const AboutPage: () => JSX.Element = () => {
   return (
     <>
       <Header title="About us" />

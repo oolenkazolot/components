@@ -2,7 +2,7 @@ import '../../main.scss';
 import './product.scss';
 import { IProduct } from '../../models';
 
-export const Product: Function = ({
+export const Product: (props: IProduct) => JSX.Element = ({
   brand,
   title,
   thumbnail,
@@ -12,7 +12,7 @@ export const Product: Function = ({
   stock,
   price,
 }: IProduct) => {
-  const mainClass: string = 'product';
+  const mainClass = 'product';
   return (
     <div className={mainClass}>
       <div className={`${mainClass}__name`}>

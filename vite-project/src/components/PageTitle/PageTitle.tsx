@@ -1,7 +1,7 @@
 import './PageTitle.scss';
-const mainClass: string = 'page-title';
+const mainClass = 'page-title';
 import { IPageTitle } from '../../models';
 
-export const PageTitle: Function = ({ title }: IPageTitle) => {
+export const PageTitle: (props: IPageTitle) => JSX.Element = ({ title }: IPageTitle) => {
   return <h1 className={mainClass}>{title}</h1>;
 };

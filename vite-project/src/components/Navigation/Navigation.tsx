@@ -1,16 +1,26 @@
 import './Navigation.scss';
 import { NavLink } from 'react-router-dom';
 
-const mainClass: string = 'navigation';
+const mainClass = 'navigation';
 
-export const Navigation: Function = () => {
+export const Navigation: () => JSX.Element = () => {
   return (
     <>
       <nav className={mainClass}>
-        <NavLink className={({ isActive }) => (isActive ? `active ${mainClass}__link` : `${mainClass}__link`)} to="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `active ${mainClass}__link` : `${mainClass}__link`
+          }
+          to="/"
+        >
           Home
         </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? `active ${mainClass}__link` : `${mainClass}__link`)} to="/about">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `active ${mainClass}__link` : `${mainClass}__link`
+          }
+          to="/about"
+        >
           About us
         </NavLink>
       </nav>

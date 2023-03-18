@@ -2,8 +2,8 @@ import { PageTitle } from '../components/PageTitle/PageTitle';
 import { Products } from '../components/Products/Products';
 import { Search } from '../components/Search/Search';
 import { Header } from '../components/Header/Header';
-const mainClass: string = 'main';
-export const HomePage: Function = () => {
+const mainClass = 'main';
+export const HomePage: () => JSX.Element = () => {
   return (
     <>
       <Header title="Home page" />

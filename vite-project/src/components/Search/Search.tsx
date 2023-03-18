@@ -26,7 +26,13 @@ export class Search extends Component {
     return (
       <section className={this.mainClass}>
         <i className={`${this.mainClass}__icon icon-search`}></i>
-        <input className={`${this.mainClass}__input`} value={this.state.searchValue} onChange={(e) => this.updateSearchValue(e.target.value)} type="text" placeholder="Search text..." />
+        <input
+          className={`${this.mainClass}__input`}
+          value={this.state.searchValue}
+          onChange={(e) => this.updateSearchValue(e.target.value)}
+          type="text"
+          placeholder="Search text..."
+        />
       </section>
     );
   }
