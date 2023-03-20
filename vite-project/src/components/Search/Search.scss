@@ -1,0 +1,33 @@
+@import '../../style/variables.scss';
+
+.search {
+  height: 20px;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px 15px;
+  border: 3px solid $color-main;
+  border-radius: 20px;
+
+  &__icon {
+    margin-right: 15px;
+    font-size: 20px;
+    color: $color-main;
+  }
+
+  &__input {
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: $color-main;
+    background: none;
+    outline: none;
+    border: none;
+
+    &::placeholder {
+      color: $color-second;
+    }
+  }
+}
