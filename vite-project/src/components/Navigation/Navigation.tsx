@@ -23,6 +23,14 @@ export const Navigation: () => JSX.Element = () => {
         >
           About us
         </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `active ${mainClass}__link` : `${mainClass}__link`
+          }
+          to="/form"
+        >
+          Form
+        </NavLink>
       </nav>
     </>
   );

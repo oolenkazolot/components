@@ -1,33 +1,40 @@
 @import '../../style/variables.scss';
 
 .search {
-  height: 20px;
+  position: relative;
   max-width: 300px;
   display: flex;
   align-items: center;
-  margin: 0 auto;
-  padding: 10px 15px;
-  border: 3px solid $color-main;
-  border-radius: 20px;
+  margin: 20px auto 0 auto;
 
   &__icon {
-    margin-right: 15px;
+    position: absolute;
+    left: 5%;
+
     font-size: 20px;
     color: $color-main;
   }
 
   &__input {
     width: 100%;
-    height: 20px;
-    font-size: 16px;
-    font-weight: 700;
-    color: $color-main;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $color-second;
     background: none;
     outline: none;
-    border: none;
+    border: 2px solid $color-main;
+    border-radius: 20px;
+    padding: 10px 15px 10px 45px;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(246, 14, 80, 0.5);
+      outline: none;
+    }
 
     &::placeholder {
       color: $color-second;
+      opacity: 0.4;
     }
   }
 }

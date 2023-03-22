@@ -1,0 +1,33 @@
+@import '../../style/variables.scss';
+
+.input-block {
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+
+  &__input {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $color-second;
+    border: 1px solid $color-main;
+    padding: 5px 10px;
+    border-radius: 0.25rem;
+    margin: 0.25rem 0;
+    background: $color-white;
+    background-clip: padding-box;
+    outline: none;
+    transition: box-shadow $transition;
+
+    &::placeholder {
+      color: $color-second;
+      opacity: 0.4;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(246, 14, 80, 0.5);
+      outline: none;
+    }
+  }
+}
