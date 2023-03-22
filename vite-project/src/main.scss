@@ -39,10 +39,21 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
+  color: $color-second;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  font-family: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
 }

@@ -2,5 +2,9 @@
 
 .checkbox-block {
   margin-bottom: 1rem;
-  color: $color-second;
+
+  &__input {
+    margin-right: 10px;
+    color: $color-second;
+  }
 }

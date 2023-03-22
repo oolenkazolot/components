@@ -1,0 +1,19 @@
+@import '../../style/variables.scss';
+.radio-group {
+  margin-bottom: 1rem;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__input {
+    margin-right: 10px;
+    color: $color-second;
+  }
+}

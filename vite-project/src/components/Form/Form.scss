@@ -1,8 +1,22 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins.scss';
+
 .form {
   width: 100%;
   max-width: 400px;
   padding: 20px;
   background-color: $bg-whitesmoke;
   border-radius: 0.25rem;
+
+  &__title {
+    margin-bottom: 1rem;
+    text-align: center;
+    @include bg-text;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 }
