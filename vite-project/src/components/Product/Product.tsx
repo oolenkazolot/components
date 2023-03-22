@@ -25,7 +25,7 @@ export const Product: (props: IProduct) => JSX.Element = ({
       <div className={`${mainClass}__info`}>
         <div className={`${mainClass}__category`}>Category: {category}</div>
         <div className={`${mainClass}__discount`}>Discount: {discount}%</div>
-        <div className={`${mainClass}__rating`}>Rating: {rating}</div>
+        {rating && <div className={`${mainClass}__rating`}>Rating: {rating}</div>}
         <div className={`${mainClass}__stock`}>Stock: {stock}</div>
       </div>
       <div className={`${mainClass}__btn-wrap`}>
