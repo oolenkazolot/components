@@ -6,6 +6,7 @@ import { InputCheckbox } from '../../components/InputCheckbox/InputCheckbox';
 import { RadioGroup } from '../RadioGroup/RadioGroup';
 import { Button } from '../Button/Button';
 import { CardForm } from '../CardForm/CardForm';
+import { Message } from '../Message/Message';
 
 interface IValuesFormState {
   name?: string;
@@ -19,6 +20,7 @@ interface IValuesFormState {
 
 type TStateForm = {
   userInfos: IValuesFormState[];
+  isSave: boolean;
 };
 
 const mainClass: string = 'form';
@@ -52,13 +54,16 @@ export class Form extends Component {
     this.stepRadioTwo = React.createRef();
     this.stepInputFile = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = { userInfos: [] };
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      userInfos: [],
+      isSave: false,
+    };
   }
 
   private handleSubmit(event: React.SyntheticEvent<EventTarget>): void {
     event.preventDefault();
     this.updateValuesForm();
-    console.log(this.state.userInfos);
   }
 
   private updateValuesForm(): void {
@@ -72,14 +77,45 @@ export class Form extends Component {
         country: this.stepSelect.current?.value,
         picture: this.stepInputFile.current?.value,
       };
-      return { userInfos: [...this.state.userInfos, valuesForm] };
+      this.clearRefsValues();
+      return { userInfos: [...this.state.userInfos, valuesForm], isSave: true };
     });
+  }
+
+  private handleClick(): void {
+    this.setState(() => {
+      return { isSave: false };
+    });
+  }
+
+  private clearRefsValues(): void {
+    if (this.stepInputText.current?.value) {
+      this.stepInputText.current.value = '';
+    }
+    if (this.stepInputDate.current?.value) {
+      this.stepInputDate.current.value = '';
+    }
+    if (this.stepRadioOne.current?.checked) {
+      this.stepRadioOne.current.checked = false;
+    }
+    if (this.stepRadioTwo.current?.checked) {
+      this.stepRadioTwo.current.checked = false;
+    }
+    if (this.stepInputCheckbox.current?.checked) {
+      this.stepInputCheckbox.current.checked = false;
+    }
+    if (this.stepSelect.current?.value) {
+      this.stepSelect.current.value = '';
+    }
+    if (this.stepInputFile.current?.value) {
+      this.stepInputFile.current.value = '';
+    }
   }
 
   render() {
     return (
       <>
-        <form onSubmit={this.handleSubmit} className={mainClass}>
+        <form onSubmit={this.handleSubmit} onClick={this.handleClick} className={mainClass}>
           <h2 className={`${mainClass}__title`}>User Info</h2>
           <Input
             content="Name:"
@@ -134,6 +170,7 @@ export class Form extends Component {
               accept: 'image/*,image/jpeg',
             }}
           />
+          {this.state.isSave && <Message message="Personal data saved" />}
           <div className={`${mainClass}__btn`}>
             <Button
               content="Submit"
