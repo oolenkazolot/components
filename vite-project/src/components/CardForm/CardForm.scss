@@ -1,0 +1,46 @@
+@import '../../style/variables.scss';
+@import '../../style/mixins.scss';
+
+.card-form {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 4px 8px 0px rgba(0, 0, 0, 0.16);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  color: $color-second;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 0px 2px 2px rgba(246, 14, 80, 0.724);
+  }
+  &:active {
+    box-shadow: 0px 0px 2px 2px rgba(233, 52, 120, 0.8);
+  }
+
+  &__name {
+    margin-bottom: 0.25rem;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__info-item {
+    @include text-ellipsis;
+
+    &:not(:last-child) {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  &__picture {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 0.25rem;
+  }
+
+  &__picture-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+}

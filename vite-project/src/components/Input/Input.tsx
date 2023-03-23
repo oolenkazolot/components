@@ -1,13 +1,7 @@
 import { Component } from 'react';
 import './Input.scss';
 const mainClass: string = 'input-block';
-
-interface IInput {
-  className?: string;
-  content?: string;
-  refInput: React.RefObject<HTMLInputElement>;
-  attributes: Record<string, string | boolean>;
-}
+import { IInput } from '../../models';
 
 export class Input extends Component<IInput> {
   constructor(props: IInput) {

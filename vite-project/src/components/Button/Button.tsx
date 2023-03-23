@@ -1,11 +1,6 @@
 import './Button.scss';
 const mainClass: string = 'btn';
-
-interface IButton {
-  className?: string;
-  content?: string;
-  attributes: Record<string, string | boolean>;
-}
+import { IButton } from '../../models';
 
 export const Button: (props: IButton) => JSX.Element = ({ content, attributes }: IButton) => {
   return (

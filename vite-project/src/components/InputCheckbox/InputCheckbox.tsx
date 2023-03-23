@@ -1,13 +1,7 @@
 import { Component } from 'react';
 import './InputCheckbox.scss';
 const mainClass: string = 'checkbox-block';
-
-interface IInputCheckbox {
-  className?: string;
-  content?: string;
-  refInput: React.RefObject<HTMLInputElement>;
-  attributes: Record<string, string | boolean>;
-}
+import { IInputCheckbox } from '../../models';
 
 export class InputCheckbox extends Component<IInputCheckbox> {
   constructor(props: IInputCheckbox) {

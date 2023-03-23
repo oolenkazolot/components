@@ -1,0 +1,8 @@
+@import '../../style/variables.scss';
+
+.message {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: $color-green;
+}

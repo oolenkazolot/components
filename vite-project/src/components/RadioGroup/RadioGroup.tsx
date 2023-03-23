@@ -1,15 +1,8 @@
 import { Component } from 'react';
 import './RadioGroup.scss';
+import { IRadioGroup } from '../../models';
 
 const mainClass: string = 'radio-group';
-
-interface IRadioGroup {
-  className?: string;
-  content: string[];
-  values: string[];
-  refInput: React.RefObject<HTMLInputElement>[];
-  attributes: Record<string, string | boolean>;
-}
 
 export class RadioGroup extends Component<IRadioGroup> {
   constructor(props: IRadioGroup) {

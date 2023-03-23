@@ -1,8 +1,7 @@
 import './Message.scss';
-type TMessage = {
-  message: string;
-};
+const mainClass: string = 'message';
+import { IMessage } from '../../models';
 
-export const Message: (props: TMessage) => JSX.Element = ({ message }) => {
-  return <span>{message}</span>;
+export const Message: (props: IMessage) => JSX.Element = ({ message }) => {
+  return <span className={mainClass}>{message}</span>;
 };
