@@ -1,0 +1,24 @@
+// color
+$color-main: #f60e50;
+$color-main-second: #e93478;
+$color-second: #20063a;
+$color-black: #000;
+$color-white: #fff;
+$color-green: #5fa55a;
+$color-red: #fa5457;
+
+// another
+$transition: 0.3s;
+$hover: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+  linear-gradient(270deg, #f60e50 0%, #db5ba1 100%);
+$active: linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+  linear-gradient(270deg, #f60e50 0%, #db5ba1 100%);
+
+// btn
+$active-btn: #db5ba1;
+$hover-btn: rgba(246, 14, 80, 0.7);
+
+// background
+$bg-gray: #e3e3e3;
+$bg-whitesmoke: #f5f5f5;
+$bg-pink: linear-gradient(270deg, #f60e50 0%, #db5ba1 100%);

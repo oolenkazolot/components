@@ -1,0 +1,10 @@
+@import '../../style/variables.scss';
+
+.checkbox-block {
+  margin-bottom: 1rem;
+
+  &__input {
+    margin-right: 10px;
+    color: $color-second;
+  }
+}
