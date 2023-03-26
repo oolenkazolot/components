@@ -14,7 +14,7 @@ export class RadioGroup extends Component<IRadioGroup> {
       <div className={mainClass}>
         {this.props.values.map((value, index) => {
           return (
-            <div key={index} className={`${mainClass}__btn`}>
+            <label key={index} className={`${mainClass}__btn`}>
               <input
                 type="radio"
                 className={`${mainClass}__input`}
@@ -23,7 +23,7 @@ export class RadioGroup extends Component<IRadioGroup> {
                 {...this.props.attributes}
               />
               {this.props.content[index]}
-            </div>
+            </label>
           );
         })}
         {this.props.errorMessage && <Message message={this.props.errorMessage} isError={true} />}

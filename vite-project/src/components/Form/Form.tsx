@@ -102,7 +102,6 @@ export class Form extends Component {
     dataValidate.select = !!(
       this.selectRef.current?.value && this.selectRef.current?.value !== 'Choose the country'
     );
-    console.log(dataValidate);
 
     this.setState(() => {
       return { dataValidateFields: dataValidate };
@@ -146,7 +145,7 @@ export class Form extends Component {
             isError={true}
             errorMessage={
               this.state.dataValidateFields.inputDate === false
-                ? 'date is invalid (date must not be greater than today"s date) '
+                ? 'Date is invalid (date must not be greater than today"s date)'
                 : ''
             }
           />
