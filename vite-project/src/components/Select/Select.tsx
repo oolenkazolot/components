@@ -1,16 +1,11 @@
 import { Component } from 'react';
 import './Select.scss';
+import { Message } from '../Message/Message';
+import { ISelect } from '../../models';
 
-type TSelect = {
-  countries: string[];
-  name: string;
-  content: string;
-  refSelect: React.RefObject<HTMLSelectElement>;
-};
-
-export class Select extends Component<TSelect> {
+export class Select extends Component<ISelect> {
   mainClass: string;
-  constructor(props: TSelect) {
+  constructor(props: ISelect) {
     super(props);
     this.mainClass = 'select-block';
   }
@@ -22,20 +17,25 @@ export class Select extends Component<TSelect> {
           {this.props.content}
         </label>
         <select
+          defaultValue={this.props.defaultOption}
           className={`${this.mainClass}__select`}
           name={this.props.name}
           ref={this.props.refSelect}
           id={this.props.name}
           required
         >
-          {this.props.countries.map((country: string) => {
+          <option disabled>{this.props.defaultOption}</option>
+          {this.props.options.map((value: string) => {
             return (
-              <option key={country} value={country}>
-                {country}
+              <option key={value} value={value}>
+                {value}
               </option>
             );
           })}
         </select>
+        {this.props.errorMessage && (
+          <Message message={this.props.errorMessage} isError={this.props.isError} />
+        )}
       </div>
     );
   }

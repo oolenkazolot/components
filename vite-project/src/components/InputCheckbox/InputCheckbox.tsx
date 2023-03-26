@@ -2,6 +2,7 @@ import { Component } from 'react';
 import './InputCheckbox.scss';
 const mainClass: string = 'checkbox-block';
 import { IInputCheckbox } from '../../models';
+import { Message } from '../Message/Message';
 
 export class InputCheckbox extends Component<IInputCheckbox> {
   constructor(props: IInputCheckbox) {
@@ -19,6 +20,9 @@ export class InputCheckbox extends Component<IInputCheckbox> {
           />
           {this.props.content}
         </label>
+        {this.props.errorMessage && (
+          <Message message={this.props.errorMessage} isError={this.props.isError} />
+        )}
       </div>
     );
   }

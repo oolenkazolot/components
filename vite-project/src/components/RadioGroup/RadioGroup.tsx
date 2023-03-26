@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import './RadioGroup.scss';
 import { IRadioGroup } from '../../models';
+import { Message } from '../Message/Message';
 
 const mainClass: string = 'radio-group';
 
@@ -25,6 +26,7 @@ export class RadioGroup extends Component<IRadioGroup> {
             </div>
           );
         })}
+        {this.props.errorMessage && <Message message={this.props.errorMessage} isError={true} />}
       </div>
     );
   }

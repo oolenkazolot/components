@@ -7,8 +7,9 @@ import { RadioGroup } from '../RadioGroup/RadioGroup';
 import { Button } from '../Button/Button';
 import { CardForm } from '../CardForm/CardForm';
 import { Message } from '../Message/Message';
-import { ICardFormValues, IStateForm } from '../../models';
+import { ICardFormValues, IStateForm, IValidateForm } from '../../models';
 import { countries } from '../../utils/countries-data';
+import { isValidationName, isValidationDate } from '../../utils/validation';
 const mainClass: string = 'form';
 
 export class Form extends Component {
@@ -37,12 +38,26 @@ export class Form extends Component {
     this.state = {
       userInfos: [],
       isSave: false,
+      dataValidateFields: {},
     };
   }
 
-  private handleSubmit(event: React.SyntheticEvent<EventTarget>): void {
+  private handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    this.updateValuesForm();
+
+    if (this.createStateValidate()) {
+      this.updateValuesForm();
+    }
+  }
+
+  private isValidateForm(dataValidate: IValidateForm): boolean {
+    for (let key in dataValidate) {
+      if (!dataValidate[key as keyof IValidateForm]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   private updateValuesForm(): void {
@@ -75,6 +90,27 @@ export class Form extends Component {
     this.formRef.current?.reset();
   }
 
+  private createStateValidate(): boolean {
+    let dataValidate: IValidateForm = {};
+
+    dataValidate.inputText = isValidationName(this.inputTextRef.current?.value);
+    dataValidate.inputDate = isValidationDate(this.inputDateRef.current?.value);
+    dataValidate.inputRadio =
+      this.radioOneRef.current?.checked || this.radioTwoRef.current?.checked;
+    dataValidate.inputCheckbox = this.inputCheckboxRef.current?.checked;
+    dataValidate.inputFile = !!this.inputFileRef.current?.value;
+    dataValidate.select = !!(
+      this.selectRef.current?.value && this.selectRef.current?.value !== 'Choose the country'
+    );
+    console.log(dataValidate);
+
+    this.setState(() => {
+      return { dataValidateFields: dataValidate };
+    });
+
+    return this.isValidateForm(dataValidate);
+  }
+
   render() {
     return (
       <>
@@ -92,8 +128,13 @@ export class Form extends Component {
               type: 'text',
               name: 'name',
               placeholder: 'Enter Name...',
-              required: true,
             }}
+            isError={true}
+            errorMessage={
+              this.state.dataValidateFields.inputText === false
+                ? 'Name is invalid (example: Oliver Peters)'
+                : ''
+            }
           />
           <Input
             content="Birthday:"
@@ -101,14 +142,22 @@ export class Form extends Component {
             attributes={{
               type: 'date',
               name: 'date',
-              required: true,
             }}
+            isError={true}
+            errorMessage={
+              this.state.dataValidateFields.inputDate === false
+                ? 'date is invalid (date must not be greater than today"s date) '
+                : ''
+            }
           />
           <Select
-            countries={countries}
+            options={countries}
+            defaultOption="Choose the country"
             refSelect={this.selectRef}
             name="countries"
             content="Country:"
+            isError={true}
+            errorMessage={this.state.dataValidateFields.select === false ? 'Specify country' : ''}
           />
           <InputCheckbox
             content="I agree with my personal data"
@@ -117,6 +166,12 @@ export class Form extends Component {
               name: 'personal-data',
               value: 'personal-data',
             }}
+            isError={true}
+            errorMessage={
+              this.state.dataValidateFields.inputCheckbox === false
+                ? 'Confirm the accuracy of personal data'
+                : ''
+            }
           ></InputCheckbox>
           <RadioGroup
             content={[
@@ -128,6 +183,12 @@ export class Form extends Component {
             attributes={{
               name: 'notifications',
             }}
+            isError={true}
+            errorMessage={
+              this.state.dataValidateFields.inputRadio === false
+                ? 'Specify whether you want to receive notifications about promotions, sales, etc.'
+                : ''
+            }
           />
           <Input
             content="Upload a profile picture"
@@ -137,8 +198,14 @@ export class Form extends Component {
               name: 'profile-picture',
               accept: 'image/*,image/jpeg',
             }}
+            isError={true}
+            errorMessage={
+              this.state.dataValidateFields.inputFile === false
+                ? 'Profile picture not selected'
+                : ''
+            }
           />
-          {this.state.isSave && <Message message="Personal data saved" />}
+          {this.state.isSave && <Message message="Personal data saved" isError={false} />}
           <div className={`${mainClass}__btn`}>
             <Button
               content="Submit"

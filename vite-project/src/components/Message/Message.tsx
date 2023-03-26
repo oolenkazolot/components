@@ -2,6 +2,7 @@ import './Message.scss';
 const mainClass: string = 'message';
 import { IMessage } from '../../models';
 
-export const Message: (props: IMessage) => JSX.Element = ({ message }) => {
-  return <span className={mainClass}>{message}</span>;
+export const Message: (props: IMessage) => JSX.Element = ({ message, isError }) => {
+  const className: string = isError ? `${mainClass} ${mainClass}--error` : mainClass;
+  return <span className={className}>{message}</span>;
 };

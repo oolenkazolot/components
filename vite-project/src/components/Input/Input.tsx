@@ -2,6 +2,7 @@ import { Component } from 'react';
 import './Input.scss';
 const mainClass: string = 'input-block';
 import { IInput } from '../../models';
+import { Message } from '../Message/Message';
 
 export class Input extends Component<IInput> {
   constructor(props: IInput) {
@@ -18,6 +19,7 @@ export class Input extends Component<IInput> {
             {...this.props.attributes}
           />
         </label>
+        <Message message={this.props.errorMessage} isError={this.props.isError} />
       </div>
     );
   }

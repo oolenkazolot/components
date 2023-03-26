@@ -36,6 +36,7 @@ export interface ICardFormValues {
 export interface IStateForm {
   userInfos: ICardFormValues[];
   isSave: boolean;
+  dataValidateFields: IValidateForm;
 }
 
 export interface IButton {
@@ -49,6 +50,8 @@ export interface IInput {
   content?: string;
   refInput: React.RefObject<HTMLInputElement>;
   attributes: Record<string, string | boolean>;
+  errorMessage: string;
+  isError: boolean;
 }
 
 export interface IInputCheckbox {
@@ -56,10 +59,13 @@ export interface IInputCheckbox {
   content?: string;
   refInput: React.RefObject<HTMLInputElement>;
   attributes: Record<string, string | boolean>;
+  errorMessage: string;
+  isError: boolean;
 }
 
 export interface IMessage {
   message: string;
+  isError: boolean;
 }
 
 export interface IRadioGroup {
@@ -68,4 +74,25 @@ export interface IRadioGroup {
   values: string[];
   refInput: React.RefObject<HTMLInputElement>[];
   attributes: Record<string, string | boolean>;
+  errorMessage: string;
+  isError: boolean;
+}
+
+export interface IValidateForm {
+  inputText?: boolean;
+  inputDate?: boolean;
+  inputRadio?: boolean;
+  inputCheckbox?: boolean;
+  select?: boolean;
+  inputFile?: boolean;
+}
+
+export interface ISelect {
+  options: string[];
+  defaultOption: string;
+  name: string;
+  content: string;
+  refSelect: React.RefObject<HTMLSelectElement>;
+  errorMessage: string;
+  isError: boolean;
 }
