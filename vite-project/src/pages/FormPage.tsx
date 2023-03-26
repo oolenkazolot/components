@@ -2,7 +2,7 @@ import { Header } from '../components/Header/Header';
 import { PageTitle } from '../components/PageTitle/PageTitle';
 import { Form } from '../components/Form/Form';
 import './FormPage.scss';
-const mainClass: string = 'form-page';
+const mainClass = 'form-page';
 
 export const FormPage: () => JSX.Element = () => {
   return (

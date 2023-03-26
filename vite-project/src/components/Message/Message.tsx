@@ -1,5 +1,5 @@
 import './Message.scss';
-const mainClass: string = 'message';
+const mainClass = 'message';
 import { IMessage } from '../../models';
 
 export const Message: (props: IMessage) => JSX.Element = ({ message, isError }) => {

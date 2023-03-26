@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './Input.scss';
-const mainClass: string = 'input-block';
+const mainClass = 'input-block';
 import { IInput } from '../../models';
 import { Message } from '../Message/Message';
 

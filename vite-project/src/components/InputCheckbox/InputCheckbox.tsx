@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import './InputCheckbox.scss';
-const mainClass: string = 'checkbox-block';
+const mainClass = 'checkbox-block';
 import { IInputCheckbox } from '../../models';
 import { Message } from '../Message/Message';
 

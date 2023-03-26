@@ -3,7 +3,7 @@ import './RadioGroup.scss';
 import { IRadioGroup } from '../../models';
 import { Message } from '../Message/Message';
 
-const mainClass: string = 'radio-group';
+const mainClass = 'radio-group';
 
 export class RadioGroup extends Component<IRadioGroup> {
   constructor(props: IRadioGroup) {

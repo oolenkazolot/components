@@ -10,7 +10,7 @@ import { Message } from '../Message/Message';
 import { ICardFormValues, IStateForm, IValidateForm } from '../../models';
 import { countries } from '../../utils/countries-data';
 import { isValidationName, isValidationDate } from '../../utils/validation';
-const mainClass: string = 'form';
+const mainClass = 'form';
 
 export class Form extends Component {
   private inputTextRef: React.RefObject<HTMLInputElement>;
@@ -51,7 +51,7 @@ export class Form extends Component {
   }
 
   private isValidateForm(dataValidate: IValidateForm): boolean {
-    for (let key in dataValidate) {
+    for (const key in dataValidate) {
       if (!dataValidate[key as keyof IValidateForm]) {
         return false;
       }
@@ -91,7 +91,7 @@ export class Form extends Component {
   }
 
   private createStateValidate(): boolean {
-    let dataValidate: IValidateForm = {};
+    const dataValidate: IValidateForm = {};
 
     dataValidate.inputText = isValidationName(this.inputTextRef.current?.value);
     dataValidate.inputDate = isValidationDate(this.inputDateRef.current?.value);
