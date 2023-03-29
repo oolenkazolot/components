@@ -1,13 +1,11 @@
+import { UseFormRegisterReturn } from 'react-hook-form';
+
 export interface IHeader {
   title: string;
 }
 
 export interface IPageTitle {
   title: string;
-}
-
-export interface ISearchState {
-  searchValue: string;
 }
 
 export interface IProduct {
@@ -48,7 +46,7 @@ export interface IButton {
 export interface IInput {
   className?: string;
   content?: string;
-  refInput: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<string>;
   attributes: Record<string, string | boolean>;
   errorMessage: string;
   isError: boolean;
@@ -57,7 +55,7 @@ export interface IInput {
 export interface IInputCheckbox {
   className?: string;
   content?: string;
-  refInput: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<string>;
   attributes: Record<string, string | boolean>;
   errorMessage: string;
   isError: boolean;
@@ -72,8 +70,8 @@ export interface IRadioGroup {
   className?: string;
   content: string[];
   values: string[];
-  refInput: React.RefObject<HTMLInputElement>[];
-  attributes: Record<string, string | boolean>;
+  register: UseFormRegisterReturn<string>;
+  attributes?: Record<string, string | boolean>;
   errorMessage: string;
   isError: boolean;
 }
@@ -90,9 +88,8 @@ export interface IValidateForm {
 export interface ISelect {
   options: string[];
   defaultOption: string;
-  name: string;
   content: string;
-  refSelect: React.RefObject<HTMLSelectElement>;
+  register: UseFormRegisterReturn<string>;
   errorMessage: string;
   isError: boolean;
 }
