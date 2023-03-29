@@ -8,8 +8,7 @@ export const RadioGroup: (props: IRadioGroup) => JSX.Element = ({
   values,
   register,
   attributes,
-  errorMessage,
-  isError,
+  error,
 }) => {
   return (
     <div className={mainClass}>
@@ -27,7 +26,7 @@ export const RadioGroup: (props: IRadioGroup) => JSX.Element = ({
           </label>
         );
       })}
-      {isError && <Message message={errorMessage} isError={isError} />}
+      {error && <Message message={error.message || 'Error'} error={!!error.message} />}
     </div>
   );
 };

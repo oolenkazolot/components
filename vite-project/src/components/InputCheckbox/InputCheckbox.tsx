@@ -7,8 +7,7 @@ export const InputCheckbox: (props: IInputCheckbox) => JSX.Element = ({
   content,
   register,
   attributes,
-  errorMessage,
-  isError,
+  error,
 }) => {
   return (
     <div className={mainClass}>
@@ -16,7 +15,7 @@ export const InputCheckbox: (props: IInputCheckbox) => JSX.Element = ({
         <input type="checkbox" className={`${mainClass}__input`} {...register} {...attributes} />
         {content}
       </label>
-      {isError && <Message message={errorMessage} isError={isError} />}
+      {error && <Message message={error.message || 'Error'} error={!!error.message} />}
     </div>
   );
 };

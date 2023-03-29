@@ -8,8 +8,7 @@ export const Select: (props: ISelect) => JSX.Element = ({
   defaultOption,
   content,
   register,
-  errorMessage,
-  isError,
+  error,
 }: ISelect) => {
   return (
     <div className={mainClass}>
@@ -24,7 +23,7 @@ export const Select: (props: ISelect) => JSX.Element = ({
           );
         })}
       </select>
-      {isError && <Message message={errorMessage} isError={isError} />}
+      {error && <Message message={error.message || 'Error'} error={!!error.message} />}
     </div>
   );
 };

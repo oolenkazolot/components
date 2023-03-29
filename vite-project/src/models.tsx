@@ -1,4 +1,4 @@
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 export interface IHeader {
   title: string;
@@ -20,22 +20,6 @@ export interface IProduct {
   thumbnail: string;
   images: string[];
 }
-
-// export interface ICardFormValues {
-//   name?: string;
-//   date?: string;
-//   addNotifications?: boolean;
-//   notNotifications?: boolean;
-//   dataPersonal?: boolean;
-//   country?: string;
-//   picture?: string | 0 | undefined;
-// }
-
-// export interface IStateForm {
-//   userInfos: ICardFormValues[];
-//   isSave: boolean;
-//   dataValidateFields: IValidateForm;
-// }
 
 export interface IFormValue {
   inputText: string;
@@ -66,8 +50,8 @@ export interface IInput {
   content?: string;
   register: UseFormRegisterReturn<string>;
   attributes: Record<string, string | boolean>;
-  errorMessage: string;
-  isError: boolean;
+
+  error: FieldError | undefined;
 }
 
 export interface IInputCheckbox {
@@ -75,13 +59,12 @@ export interface IInputCheckbox {
   content?: string;
   register: UseFormRegisterReturn<string>;
   attributes: Record<string, string | boolean>;
-  errorMessage: string;
-  isError: boolean;
+  error: FieldError | undefined;
 }
 
 export interface IMessage {
-  message: string;
-  isError: boolean;
+  message: string | undefined;
+  error: boolean;
 }
 
 export interface IRadioGroup {
@@ -90,17 +73,7 @@ export interface IRadioGroup {
   values: string[];
   register: UseFormRegisterReturn<string>;
   attributes?: Record<string, string | boolean>;
-  errorMessage: string;
-  isError: boolean;
-}
-
-export interface IValidateForm {
-  inputText?: boolean;
-  inputDate?: boolean;
-  inputRadio?: boolean;
-  inputCheckbox?: boolean;
-  select?: boolean;
-  inputFile?: boolean;
+  error: FieldError | undefined;
 }
 
 export interface ISelect {
@@ -108,6 +81,5 @@ export interface ISelect {
   defaultOption: string;
   content: string;
   register: UseFormRegisterReturn<string>;
-  errorMessage: string;
-  isError: boolean;
+  error: FieldError | undefined;
 }
