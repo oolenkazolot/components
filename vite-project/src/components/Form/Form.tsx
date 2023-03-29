@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './Form.scss';
 import { Input } from '../Input/Input';
@@ -8,19 +8,10 @@ import { RadioGroup } from '../RadioGroup/RadioGroup';
 import { Button } from '../Button/Button';
 import { CardForm } from '../CardForm/CardForm';
 import { Message } from '../Message/Message';
-import { ICardFormValues, IStateForm, IValidateForm } from '../../models';
+import { IFormValue, IValidateForm, ICardForm } from '../../models';
 import { countries } from '../../utils/countries-data';
 import { isValidationName, isValidationDate } from '../../utils/validation';
 const mainClass = 'form';
-
-interface IFormValue {
-  inputText: string;
-  inputDate: string;
-  select: string;
-  inputCheckbox: number;
-  radioGroup: string;
-  inputFile: string;
-}
 
 export const Form: () => JSX.Element = () => {
   const {
@@ -31,8 +22,12 @@ export const Form: () => JSX.Element = () => {
   } = useForm<IFormValue>();
 
   const [formSent, setFormSent] = useState<boolean>(false);
+  const [userInfos, setUserInfos] = useState<ICardForm[]>([]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IFormValue) => {
+    const file: string = URL.createObjectURL(data.inputFile[0]);
+    const item: ICardForm = { ...data, image: file };
+    setUserInfos([...userInfos, item]);
     setFormSent(true);
     reset();
   };
@@ -114,11 +109,11 @@ export const Form: () => JSX.Element = () => {
           />
         </div>
       </form>
-      {/* <div className={`${mainClass}__cards`}>
-        {this.state.userInfos.map((userInfo, index) => {
+      <div className={`${mainClass}__cards`}>
+        {userInfos.map((userInfo: ICardForm, index) => {
           return <CardForm key={index} {...userInfo} />;
         })}
-      </div> */}
+      </div>
     </>
   );
 };

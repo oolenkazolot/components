@@ -21,20 +21,38 @@ export interface IProduct {
   images: string[];
 }
 
-export interface ICardFormValues {
-  name?: string;
-  date?: string;
-  addNotifications?: boolean;
-  notNotifications?: boolean;
-  dataPersonal?: boolean;
-  country?: string;
-  picture?: string | 0 | undefined;
+// export interface ICardFormValues {
+//   name?: string;
+//   date?: string;
+//   addNotifications?: boolean;
+//   notNotifications?: boolean;
+//   dataPersonal?: boolean;
+//   country?: string;
+//   picture?: string | 0 | undefined;
+// }
+
+// export interface IStateForm {
+//   userInfos: ICardFormValues[];
+//   isSave: boolean;
+//   dataValidateFields: IValidateForm;
+// }
+
+export interface IFormValue {
+  inputText: string;
+  inputDate: string;
+  select: string;
+  inputCheckbox: string;
+  radioGroup: string;
+  inputFile: FileList;
 }
 
-export interface IStateForm {
-  userInfos: ICardFormValues[];
-  isSave: boolean;
-  dataValidateFields: IValidateForm;
+export interface ICardForm {
+  inputText: string;
+  inputDate: string;
+  select: string;
+  inputCheckbox: string;
+  radioGroup: string;
+  image: string;
 }
 
 export interface IButton {
