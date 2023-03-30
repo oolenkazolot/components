@@ -7,7 +7,7 @@ import { Header } from '../components/Header/Header';
 export const NotFoundPage: () => JSX.Element = () => {
   return (
     <>
-      <Header title="NotFoundPage" />
+      {/* <Header title="NotFoundPage" /> */}
       <main className={mainClass}>
         <PageTitle title="NotFoundPage" />
         <p>

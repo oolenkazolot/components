@@ -32,8 +32,6 @@ export const Form: () => JSX.Element = () => {
     reset();
   };
 
-  console.log(errors);
-
   return (
     <>
       <form

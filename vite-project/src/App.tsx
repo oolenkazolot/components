@@ -4,10 +4,12 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { FormPage } from './pages/FormPage';
+import { Header } from './components/Header/Header';
 
 function App() {
   return (
     <>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

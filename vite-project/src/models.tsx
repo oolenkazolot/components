@@ -1,9 +1,5 @@
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
-export interface IHeader {
-  title: string;
-}
-
 export interface IPageTitle {
   title: string;
 }

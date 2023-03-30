@@ -6,7 +6,7 @@ const mainClass = 'main';
 export const HomePage: () => JSX.Element = () => {
   return (
     <>
-      <Header title="Home page" />
+      {/* <Header title="Home page" /> */}
       <main className={mainClass}>
         <PageTitle title="Home page" />
         <Search />
