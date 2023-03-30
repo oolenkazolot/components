@@ -50,7 +50,7 @@ export const Form: () => JSX.Element = () => {
           })}
           attributes={{
             type: 'text',
-            placeholder: 'Enter Name...',
+            placeholder: 'Enter First and Last names...',
           }}
           error={errors.inputText}
         />

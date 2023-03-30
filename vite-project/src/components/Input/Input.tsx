@@ -13,7 +13,13 @@ export const Input: (props: IInput) => JSX.Element = ({
     <div className={mainClass}>
       <label className={`${mainClass}__label`}>
         {content}
-        <input className={`${mainClass}__input`} {...register} {...attributes} />
+        <input
+          className={
+            error ? `${mainClass}__input ${mainClass}__input--error` : `${mainClass}__input`
+          }
+          {...register}
+          {...attributes}
+        />
       </label>
       {error && error.type === 'required' && (
         <Message message={error.message || 'Error'} error={!!error.message} />

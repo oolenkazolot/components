@@ -10,7 +10,7 @@
     font-weight: 400;
     line-height: 1.5;
     color: $color-second;
-    border: 1px solid $color-main;
+    border: 1px solid $color-grey-light;
     padding: 5px 10px;
     border-radius: 0.25rem;
     margin: 0.25rem 0;
@@ -25,8 +25,17 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba(246, 14, 80, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(158, 156, 158, 0.5);
       outline: none;
+    }
+
+    &--error {
+      border: 1px solid $color-red;
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba(250, 84, 87, 0.5);
+        outline: none;
+      }
     }
   }
 }
