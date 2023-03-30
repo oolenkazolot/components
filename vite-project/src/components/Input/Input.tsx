@@ -9,17 +9,14 @@ export const Input: (props: IInput) => JSX.Element = ({
   attributes,
   error,
 }: IInput) => {
+  const inputClass: string = error
+    ? `${mainClass}__input ${mainClass}__input--error`
+    : `${mainClass}__input`;
   return (
     <div className={mainClass}>
       <label className={`${mainClass}__label`}>
         {content}
-        <input
-          className={
-            error ? `${mainClass}__input ${mainClass}__input--error` : `${mainClass}__input`
-          }
-          {...register}
-          {...attributes}
-        />
+        <input className={inputClass} {...register} {...attributes} />
       </label>
       {error && error.type === 'required' && (
         <Message message={error.message || 'Error'} error={!!error.message} />
@@ -28,7 +25,7 @@ export const Input: (props: IInput) => JSX.Element = ({
         <Message
           message={
             error.message ||
-            'enter the first and last name, with a capital letter (example: Alex Smit)'
+            'Enter the first and last name, with a capital letter (example: Alex Smit)'
           }
           error={true}
         />
@@ -37,7 +34,7 @@ export const Input: (props: IInput) => JSX.Element = ({
         <Message
           message={
             error.message ||
-            'enter the date in numbers, date must not be greater than today is date'
+            'Enter the date in numbers, date must not be greater than today is date'
           }
           error={true}
         />

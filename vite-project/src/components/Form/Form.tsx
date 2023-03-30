@@ -10,7 +10,7 @@ import { CardForm } from '../CardForm/CardForm';
 import { Message } from '../Message/Message';
 import { IFormValue, ICardForm } from '../../models';
 import { countries } from '../../utils/countries-data';
-import { isValidationName, isValidationDate } from '../../utils/validation';
+import { isValidationName, isValidationDate } from '../../utils/validation/validation';
 const mainClass = 'form';
 
 export const Form: () => JSX.Element = () => {
@@ -43,7 +43,7 @@ export const Form: () => JSX.Element = () => {
         <Input
           content="First and last names:"
           register={register('inputText', {
-            required: 'field is required',
+            required: 'Field is required',
             validate: {
               names: isValidationName,
             },
@@ -57,7 +57,7 @@ export const Form: () => JSX.Element = () => {
         <Input
           content="Birthday:"
           register={register('inputDate', {
-            required: 'field is required',
+            required: 'Field is required',
             validate: {
               date: isValidationDate,
             },
@@ -70,13 +70,13 @@ export const Form: () => JSX.Element = () => {
         <Select
           options={countries}
           defaultOption="Choose the country"
-          register={register('select', { required: 'field is required' })}
+          register={register('select', { required: 'Field is required' })}
           content="Country:"
           error={errors.select}
         />
         <InputCheckbox
           content="I agree with my personal data"
-          register={register('inputCheckbox', { required: 'field is required' })}
+          register={register('inputCheckbox', { required: 'Field is required' })}
           attributes={{
             value: 'personal-data',
           }}
@@ -87,13 +87,13 @@ export const Form: () => JSX.Element = () => {
             'I want to receive notifications about promo, sales, etc.',
             'I don’t want to receive notifications about promo, sales, etc.',
           ]}
-          register={register('radioGroup', { required: 'field is required' })}
+          register={register('radioGroup', { required: 'Field is required' })}
           values={['add-notifications', 'not-notifications']}
           error={errors.radioGroup}
         />
         <Input
           content="Upload a profile picture"
-          register={register('inputFile', { required: 'field is required' })}
+          register={register('inputFile', { required: 'Field is required' })}
           attributes={{
             type: 'file',
             accept: 'image/*,image/jpeg',
