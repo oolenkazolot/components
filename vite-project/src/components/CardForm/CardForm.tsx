@@ -1,7 +1,7 @@
 import './CardForm.scss';
 import { ICardForm } from '../../models';
 
-const mainClass: string = 'card-form';
+const mainClass = 'card-form';
 
 export const CardForm: (props: ICardForm) => JSX.Element = ({
   inputText,

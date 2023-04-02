@@ -1,7 +1,7 @@
 import './Select.scss';
 import { Message } from '../Message/Message';
 import { ISelect } from '../../models';
-const mainClass: string = 'select-block';
+const mainClass = 'select-block';
 
 export const Select: (props: ISelect) => JSX.Element = ({
   options,

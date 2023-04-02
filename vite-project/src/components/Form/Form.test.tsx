@@ -32,7 +32,7 @@ describe('Form', () => {
   it('save form data data if validation is successful', async () => {
     render(<Form />);
     URL.createObjectURL = function (obj) {
-      return '';
+      return obj.toString();
     };
     const inputText: HTMLInputElement = screen.getByRole('textbox', {
       name: 'First and last names:',

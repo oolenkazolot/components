@@ -1,5 +1,4 @@
 import { PageTitle } from '../components/PageTitle/PageTitle';
-import { Header } from '../components/Header/Header';
 const mainClass = 'main';
 export const AboutPage: () => JSX.Element = () => {
   return (
