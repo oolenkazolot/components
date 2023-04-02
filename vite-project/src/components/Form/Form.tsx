@@ -104,7 +104,7 @@ export const Form: () => JSX.Element = () => {
           register={register('inputFile', { required: 'Field is required' })}
           attributes={{
             type: 'file',
-            accept: 'image/*,image/jpeg',
+            accept: 'image/*',
           }}
           error={errors.inputFile}
         />

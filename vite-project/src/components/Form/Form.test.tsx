@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { s } from 'vitest/dist/env-afee91f0';
+import userEvent from '@testing-library/user-event';
+
 import { Form } from './Form';
 
 describe('Form', () => {
@@ -28,52 +29,38 @@ describe('Form', () => {
     expect(count).toEqual(6);
   });
 
-  //
+  it('save form data data if validation is successful', async () => {
+    render(<Form />);
+    URL.createObjectURL = function (obj) {
+      return '';
+    };
+    const inputText: HTMLInputElement = screen.getByRole('textbox', {
+      name: 'First and last names:',
+    });
+    fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
 
-  // it('save form data data if validation is successful', async () => {
-  //   render(<Form />);
-  //   URL.createObjectURL = function (obj) {
-  //     return '';
-  //   };
-  //   const inputText: HTMLInputElement = screen.getByRole('textbox', {
-  //     name: 'First and last names:',
-  //   });
-  //   fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
+    const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
+    fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
 
-  //   const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
-  //   fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
+    const select: HTMLSelectElement = screen.getByRole('combobox', { name: 'Country:' });
+    fireEvent.change(select, { target: { value: 'Poland' } });
 
-  //   const select: HTMLSelectElement = screen.getByRole('combobox', { name: 'Country:' });
-  //   fireEvent.change(select, { target: { value: 'Poland' } });
+    const inputCheckbox: HTMLInputElement = screen.getByRole('checkbox', {
+      name: 'I agree with my personal data',
+    });
+    fireEvent.click(inputCheckbox);
 
-  //   const inputCheckbox: HTMLInputElement = screen.getByRole('checkbox', {
-  //     name: 'I agree with my personal data',
-  //   });
-  //   fireEvent.click(inputCheckbox);
-
-  //   const inputRadio: HTMLInputElement = screen.getByRole('radio', {
-  //     name: 'I want to receive notifications about promo, sales, etc.',
-  //   });
-  //   fireEvent.click(inputRadio);
-
-  //   const inputFile: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
-  //   fireEvent.change(inputFile, {
-  //     target: {
-  //       files: [
-  //         new File([' '], 'C:\fakepathTo reach the goal, you must first of all go. (1).png', {
-  //           type: 'image/png',
-  //         }),
-  //       ],
-  //     },
-  //   });
-
-  //   const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
-  //   fireEvent.click(button);
-
-  //   await screen.findByText(/Personal data saved/i);
-  // });
-
-  //
+    const inputRadio: HTMLInputElement = screen.getByRole('radio', {
+      name: 'I want to receive notifications about promo, sales, etc.',
+    });
+    fireEvent.click(inputRadio);
+    const file: File = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const fileInput: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
+    await userEvent.upload(fileInput, file);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    await screen.findByText(/Personal data saved/i);
+  });
 
   it('should show error message be shown if the name field contains numbers', async () => {
     render(<Form />);
@@ -114,42 +101,37 @@ describe('Form', () => {
     );
   });
 
-  // it('the form must be cleared after the form is submitted', () => {
-  //   render(<Form />);
-  //   const inputText: HTMLInputElement = screen.getByLabelText('First and last names:');
-  //   fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
-  //   const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
-  //   fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
-  //   const select: HTMLSelectElement = screen.getByRole('combobox', { name: 'Country:' });
-  //   fireEvent.change(select, { target: { value: 'Poland' } });
-  //   const inputCheckbox: HTMLInputElement = screen.getByRole('checkbox', {
-  //     name: 'I agree with my personal data',
-  //   });
-  //   fireEvent.click(inputCheckbox);
-  //   const inputRadio: HTMLInputElement = screen.getByRole('radio', {
-  //     name: 'I want to receive notifications about promo, sales, etc.',
-  //   });
-  //   fireEvent.click(inputRadio);
-  //   const inputFile: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
-  //   fireEvent.change(inputFile, {
-  //     target: {
-  //       files: [
-  //         new File([' '], 'C:\fakepathTo reach the goal, you must first of all go. (1).png', {
-  //           type: 'image/png',
-  //         }),
-  //       ],
-  //     },
-  //   });
-  //   const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-  //   fireEvent.click(btnSubmit);
+  it('the form must be cleared after the form is submitted', async () => {
+    render(<Form />);
+    const inputText: HTMLInputElement = screen.getByLabelText('First and last names:');
+    fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
+    const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
+    fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
+    const select: HTMLSelectElement = screen.getByRole('combobox', { name: 'Country:' });
+    fireEvent.change(select, { target: { value: 'Poland' } });
+    const inputCheckbox: HTMLInputElement = screen.getByRole('checkbox', {
+      name: 'I agree with my personal data',
+    });
+    fireEvent.click(inputCheckbox);
+    const inputRadio: HTMLInputElement = screen.getByRole('radio', {
+      name: 'I want to receive notifications about promo, sales, etc.',
+    });
+    fireEvent.click(inputRadio);
+    const inputFile: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
+    fireEvent.click(inputRadio);
+    const file: File = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const fileInput: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
+    await userEvent.upload(fileInput, file);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
 
-  //   setTimeout(() => {
-  //     expect(inputText).toHaveValue('');
-  //     expect(inputDate).toHaveValue('');
-  //     expect(select).toHaveValue('');
-  //     expect(inputCheckbox).toHaveChecked(false);
-  //     expect(inputRadio).toHaveChecked(false);
-  //     expect(inputFile).toHaveValue('');
-  //   }, 1000);
-  // });
+    setTimeout(() => {
+      expect(inputText).toHaveValue('');
+      expect(inputDate).toHaveValue('');
+      expect(select).toHaveValue('');
+      expect(inputCheckbox).toHaveChecked(false);
+      expect(inputRadio).toHaveChecked(false);
+      expect(inputFile).toHaveValue('');
+    }, 1000);
+  });
 });
