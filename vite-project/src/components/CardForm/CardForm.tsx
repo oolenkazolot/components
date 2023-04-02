@@ -1,39 +1,37 @@
 import './CardForm.scss';
-import { ICardFormValues } from '../../models';
+import { ICardForm } from '../../models';
 
-export const CardForm: (props: ICardFormValues) => JSX.Element = ({
-  name,
-  date,
-  addNotifications,
-  notNotifications,
-  dataPersonal,
-  country,
-  picture,
-}: ICardFormValues) => {
-  const mainClass = 'card-form';
+const mainClass = 'card-form';
+
+export const CardForm: (props: ICardForm) => JSX.Element = ({
+  inputText,
+  inputDate,
+  select,
+  inputCheckbox,
+  radioGroup,
+  image,
+}: ICardForm) => {
   return (
     <div className={mainClass}>
-      <div className={`${mainClass}__name`}>{name}</div>
+      <div className={`${mainClass}__name`}>{inputText}</div>
       <div className={`${mainClass}__picture`}>
-        {picture && (
-          <img className={`${mainClass}__picture-item`} src={picture} alt="card-img"></img>
-        )}
+        {image && <img className={`${mainClass}__picture-item`} src={image} alt="card-img"></img>}
       </div>
 
       <div className={`${mainClass}__info`}>
-        <div className={`${mainClass}__info-item`}>Birthday: {date}</div>
-        <div className={`${mainClass}__info-item`}>Country: {country}</div>
-        {addNotifications && (
+        <div className={`${mainClass}__info-item`}>Birthday: {inputDate}</div>
+        <div className={`${mainClass}__info-item`}>Country: {select}</div>
+        {radioGroup === 'add-notifications' && (
           <div className={`${mainClass}__info-item`}>
             I want to receive notifications about promo, sales, etc.
           </div>
         )}
-        {notNotifications && (
+        {radioGroup === 'not-notifications' && (
           <div className={`${mainClass}__info-item`}>
             I don’t want to receive notifications about promo, sales, etc.
           </div>
         )}
-        {dataPersonal && <div>I agree with my personal data</div>}
+        {inputCheckbox && <div>I agree with my personal data</div>}
       </div>
     </div>
   );

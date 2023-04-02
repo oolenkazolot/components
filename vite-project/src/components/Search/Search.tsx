@@ -1,39 +1,31 @@
-import { Component } from 'react';
-import { ISearchState } from '../../models';
+import { useState, useEffect, useRef } from 'react';
 import './search.scss';
 import '../../main.scss';
+const mainClass = 'search';
 
-export class Search extends Component {
-  private mainClass: string;
-  public state: ISearchState;
-  constructor(props: Component) {
-    super(props);
-    this.state = { searchValue: localStorage.getItem('searchValue') || '' };
-    this.mainClass = 'search';
-  }
+export const Search: () => JSX.Element = () => {
+  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
+  const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
-  public componentWillUnmount(): void {
-    localStorage.setItem('searchValue', this.state.searchValue);
-  }
+  useEffect(() => {
+    const current = inputRef.current;
 
-  private updateSearchValue(searchValue: string | null): void {
-    this.setState(() => {
-      return { searchValue: searchValue || '' };
-    });
-  }
+    return () => {
+      localStorage.setItem('searchValue', current!.value);
+    };
+  }, []);
 
-  public render() {
-    return (
-      <section className={this.mainClass}>
-        <i className={`${this.mainClass}__icon icon-search`}></i>
-        <input
-          className={`${this.mainClass}__input`}
-          value={this.state.searchValue}
-          onChange={(e) => this.updateSearchValue(e.target.value)}
-          type="text"
-          placeholder="Search text..."
-        />
-      </section>
-    );
-  }
-}
+  return (
+    <section className={mainClass}>
+      <i className={`${mainClass}__icon icon-search`}></i>
+      <input
+        className={`${mainClass}__input`}
+        ref={inputRef}
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        type="text"
+        placeholder="Search text..."
+      />
+    </section>
+  );
+};

@@ -1,13 +1,7 @@
-export interface IHeader {
-  title: string;
-}
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 export interface IPageTitle {
   title: string;
-}
-
-export interface ISearchState {
-  searchValue: string;
 }
 
 export interface IProduct {
@@ -23,20 +17,22 @@ export interface IProduct {
   images: string[];
 }
 
-export interface ICardFormValues {
-  name?: string;
-  date?: string;
-  addNotifications?: boolean;
-  notNotifications?: boolean;
-  dataPersonal?: boolean;
-  country?: string;
-  picture?: string | 0 | undefined;
+export interface IFormValue {
+  inputText: string;
+  inputDate: string;
+  select: string;
+  inputCheckbox: string;
+  radioGroup: string;
+  inputFile: FileList;
 }
 
-export interface IStateForm {
-  userInfos: ICardFormValues[];
-  isSave: boolean;
-  dataValidateFields: IValidateForm;
+export interface ICardForm {
+  inputText: string;
+  inputDate: string;
+  select: string;
+  inputCheckbox: string;
+  radioGroup: string;
+  image: string;
 }
 
 export interface IButton {
@@ -48,51 +44,38 @@ export interface IButton {
 export interface IInput {
   className?: string;
   content?: string;
-  refInput: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<string>;
   attributes: Record<string, string | boolean>;
-  errorMessage: string;
-  isError: boolean;
+
+  error: FieldError | undefined;
 }
 
 export interface IInputCheckbox {
   className?: string;
   content?: string;
-  refInput: React.RefObject<HTMLInputElement>;
+  register: UseFormRegisterReturn<string>;
   attributes: Record<string, string | boolean>;
-  errorMessage: string;
-  isError: boolean;
+  error: FieldError | undefined;
 }
 
 export interface IMessage {
-  message: string;
-  isError: boolean;
+  message: string | undefined;
+  error: boolean;
 }
 
 export interface IRadioGroup {
   className?: string;
   content: string[];
   values: string[];
-  refInput: React.RefObject<HTMLInputElement>[];
-  attributes: Record<string, string | boolean>;
-  errorMessage: string;
-  isError: boolean;
-}
-
-export interface IValidateForm {
-  inputText?: boolean;
-  inputDate?: boolean;
-  inputRadio?: boolean;
-  inputCheckbox?: boolean;
-  select?: boolean;
-  inputFile?: boolean;
+  register: UseFormRegisterReturn<string>;
+  attributes?: Record<string, string | boolean>;
+  error: FieldError | undefined;
 }
 
 export interface ISelect {
   options: string[];
   defaultOption: string;
-  name: string;
   content: string;
-  refSelect: React.RefObject<HTMLSelectElement>;
-  errorMessage: string;
-  isError: boolean;
+  register: UseFormRegisterReturn<string>;
+  error: FieldError | undefined;
 }

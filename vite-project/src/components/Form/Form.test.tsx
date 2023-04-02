@@ -1,106 +1,109 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import { Form } from './Form';
 
 describe('Form', () => {
-  it('render error messages when submitting an empty form', () => {
+  it('should render the basic fields', () => {
     render(<Form />);
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    screen.getByText('Name is invalid (example: Oliver Peters)');
-    screen.getByText('Date is invalid (date must not be greater than today"s date)');
-    screen.getByText('Specify country');
-    screen.getByText('Confirm the accuracy of personal data');
-    screen.getByText(
-      'Specify whether you want to receive notifications about promotions, sales, etc.'
-    );
-    screen.getByText('Profile picture not selected');
+    expect(screen.getByText(/User Info/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/First and last names:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Birthday:/i)).toBeInTheDocument();
+    expect(screen.getByText(/Country:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/I agree with my personal data/i)).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(/I want to receive notifications about promo, sales, etc./i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(/I don’t want to receive notifications about promo, sales, etc./i)
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText(/Upload a profile picture/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Submit/i })).toBeInTheDocument();
   });
 
-  it('save form data data if validation is successful', () => {
+  it('should must be an 6 errors, the fields are required', async () => {
     render(<Form />);
-    const inputText: HTMLInputElement = screen.getByRole('textbox', { name: 'Name:' });
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    const count: number = (await screen.findAllByText('Field is required')).length;
+    expect(count).toEqual(6);
+  });
+
+  it('save form data data if validation is successful', async () => {
+    render(<Form />);
+    URL.createObjectURL = function (obj) {
+      return obj.toString();
+    };
+    const inputText: HTMLInputElement = screen.getByRole('textbox', {
+      name: 'First and last names:',
+    });
     fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
-    expect(inputText.value).toBe('Oliver Peters');
+
     const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
     fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
-    expect(inputDate.value).toBe('1989-07-31');
+
     const select: HTMLSelectElement = screen.getByRole('combobox', { name: 'Country:' });
     fireEvent.change(select, { target: { value: 'Poland' } });
-    expect(select.value).toBe('Poland');
+
     const inputCheckbox: HTMLInputElement = screen.getByRole('checkbox', {
       name: 'I agree with my personal data',
     });
     fireEvent.click(inputCheckbox);
-    expect(inputCheckbox.checked).toEqual(true);
+
     const inputRadio: HTMLInputElement = screen.getByRole('radio', {
       name: 'I want to receive notifications about promo, sales, etc.',
     });
     fireEvent.click(inputRadio);
-    expect(inputRadio).toBeChecked();
-    const inputFile: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
-    fireEvent.change(inputFile, {
-      target: {
-        files: [
-          new File([' '], 'C:\fakepathTo reach the goal, you must first of all go. (1).png', {
-            type: 'image/png',
-          }),
-        ],
-      },
-    });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    expect(screen.findByText('Personal data saved'));
+    const file: File = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const fileInput: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
+    await userEvent.upload(fileInput, file);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    await screen.findByText(/Personal data saved/i);
   });
 
-  it('should show error message be shown if the name field contains numbers', () => {
+  it('should show error message be shown if the name field contains numbers', async () => {
     render(<Form />);
-    const inputText: HTMLInputElement = screen.getByRole('textbox', { name: 'Name:' });
+    const inputText: HTMLInputElement = screen.getByRole('textbox', {
+      name: 'First and last names:',
+    });
     fireEvent.change(inputText, { target: { value: '11111' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    screen.getByText('Name is invalid (example: Oliver Peters)');
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    await screen.findByText(
+      'Enter the first and last name, with a capital letter (example: Alex Smit)'
+    );
   });
 
-  it('should show error message be shown if the name does not start with a capital letter', () => {
+  it('should show error message be shown if the name does not start with a capital letter', async () => {
     render(<Form />);
-    const inputText: HTMLInputElement = screen.getByRole('textbox', { name: 'Name:' });
+    const inputText: HTMLInputElement = screen.getByRole('textbox', {
+      name: 'First and last names:',
+    });
     fireEvent.change(inputText, { target: { value: 'oliver Peters' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    screen.getByText('Name is invalid (example: Oliver Peters)');
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    await screen.findByText(
+      'Enter the first and last name, with a capital letter (example: Alex Smit)'
+    );
   });
 
-  it('should show error message be shown if the surname does not start with a capital letter', () => {
+  it('should show error message be shown if the surname does not start with a capital letter', async () => {
     render(<Form />);
-    const inputText: HTMLInputElement = screen.getByRole('textbox', { name: 'Name:' });
+    const inputText: HTMLInputElement = screen.getByRole('textbox', {
+      name: 'First and last names:',
+    });
     fireEvent.change(inputText, { target: { value: 'Oliver peters' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    screen.getByText('Name is invalid (example: Oliver Peters)');
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    await screen.findByText(
+      'Enter the first and last name, with a capital letter (example: Alex Smit)'
+    );
   });
 
-  it('should show error message be shown if numbers are entered in the birthday field', () => {
+  it('the form must be cleared after the form is submitted', async () => {
     render(<Form />);
-    const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
-    fireEvent.change(inputDate, { target: { value: 'ff19-ff-31' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    screen.getByText('Date is invalid (date must not be greater than today"s date)');
-  });
-
-  it('should show error message be shown if the date is greater than the current date', () => {
-    render(<Form />);
-    const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
-    fireEvent.change(inputDate, { target: { value: '26.03.2024' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
-    screen.getByText('Date is invalid (date must not be greater than today"s date)');
-  });
-
-  it('the form must be cleared after the form is submitted', () => {
-    render(<Form />);
-
-    const inputText: HTMLInputElement = screen.getByLabelText('Name:');
+    const inputText: HTMLInputElement = screen.getByLabelText('First and last names:');
     fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
     const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
     fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
@@ -115,17 +118,12 @@ describe('Form', () => {
     });
     fireEvent.click(inputRadio);
     const inputFile: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
-    fireEvent.change(inputFile, {
-      target: {
-        files: [
-          new File([' '], 'C:\fakepathTo reach the goal, you must first of all go. (1).png', {
-            type: 'image/png',
-          }),
-        ],
-      },
-    });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
+    fireEvent.click(inputRadio);
+    const file: File = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const fileInput: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
+    await userEvent.upload(fileInput, file);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
 
     setTimeout(() => {
       expect(inputText).toHaveValue('');

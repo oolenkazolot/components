@@ -16,3 +16,15 @@ export function isValidationDate(date: string | undefined): boolean {
   const birthday = new Date(date);
   return today >= birthday;
 }
+
+export function isValidationSelect(value: string): boolean {
+  if (!value) {
+    return false;
+  }
+
+  if (value === 'Choose the country') {
+    return false;
+  }
+
+  return true;
+}

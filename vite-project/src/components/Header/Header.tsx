@@ -1,13 +1,16 @@
+import { useLocation } from 'react-router-dom';
 import { Navigation } from '../Navigation/Navigation';
+import { getTitleHeader } from '../../utils/getTitleHeader';
 import './Header.scss';
-import { IHeader } from '../../models';
+
 const mainClass = 'header';
 
-export const Header: (props: IHeader) => JSX.Element = ({ title }: IHeader) => {
+export const Header: () => JSX.Element = () => {
+  const currentLocation = useLocation();
   return (
     <>
       <header className={mainClass}>
-        <div className={`${mainClass}__title`}>{title}</div>
+        <div className={`${mainClass}__title`}>{getTitleHeader(currentLocation.pathname)}</div>
         <Navigation />
       </header>
     </>
