@@ -19,7 +19,7 @@ export const Input: (props: IInput) => JSX.Element = ({
         <input className={inputClass} {...register} {...attributes} />
       </label>
       {error && error.type === 'required' && (
-        <Message message={error.message || 'Error'} error={!!error.message} />
+        <Message message={error.message || 'Error'} error={!!error} />
       )}
       {error && error.type === 'names' && (
         <Message
@@ -27,7 +27,7 @@ export const Input: (props: IInput) => JSX.Element = ({
             error.message ||
             'Enter the first and last name, with a capital letter (example: Alex Smit)'
           }
-          error={true}
+          error={!!error}
         />
       )}
       {error && error.type === 'date' && (
@@ -36,7 +36,7 @@ export const Input: (props: IInput) => JSX.Element = ({
             error.message ||
             'Enter the date in numbers, date must not be greater than today is date'
           }
-          error={true}
+          error={!!error}
         />
       )}
     </div>

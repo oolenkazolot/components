@@ -10,7 +10,11 @@ import { CardForm } from '../CardForm/CardForm';
 import { Message } from '../Message/Message';
 import { IFormValue, ICardForm } from '../../models';
 import { countries } from '../../utils/countries-data';
-import { isValidationName, isValidationDate } from '../../utils/validation/validation';
+import {
+  isValidationName,
+  isValidationDate,
+  isValidationSelect,
+} from '../../utils/validation/validation';
 const mainClass = 'form';
 
 export const Form: () => JSX.Element = () => {
@@ -19,7 +23,7 @@ export const Form: () => JSX.Element = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IFormValue>();
+  } = useForm<IFormValue>({ reValidateMode: 'onSubmit' });
 
   const [formSent, setFormSent] = useState<boolean>(false);
   const [userInfos, setUserInfos] = useState<ICardForm[]>([]);
@@ -70,7 +74,11 @@ export const Form: () => JSX.Element = () => {
         <Select
           options={countries}
           defaultOption="Choose the country"
-          register={register('select', { required: 'Field is required' })}
+          register={register('select', {
+            validate: {
+              select: isValidationSelect,
+            },
+          })}
           content="Country:"
           error={errors.select}
         />

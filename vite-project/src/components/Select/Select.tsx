@@ -10,20 +10,26 @@ export const Select: (props: ISelect) => JSX.Element = ({
   register,
   error,
 }: ISelect) => {
+  console.log(error);
+
   return (
     <div className={mainClass}>
-      <label className={`${mainClass}__label`}>{content}</label>
-      <select defaultValue={defaultOption} className={`${mainClass}__select`} {...register}>
-        <option disabled>{defaultOption}</option>
-        {options.map((value: string) => {
-          return (
-            <option key={value} value={value}>
-              {value}
-            </option>
-          );
-        })}
-      </select>
-      {error && <Message message={error.message || 'Error'} error={!!error.message} />}
+      <label className={`${mainClass}__label`}>
+        {content}
+        <select defaultValue={defaultOption} className={`${mainClass}__select`} {...register}>
+          <option disabled>{defaultOption}</option>
+          {options.map((value: string) => {
+            return (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            );
+          })}
+        </select>
+      </label>
+      {error && error.type === 'select' && (
+        <Message message={'Field is required'} error={!!error} />
+      )}
     </div>
   );
 };

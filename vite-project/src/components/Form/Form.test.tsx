@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { s } from 'vitest/dist/env-afee91f0';
 import { Form } from './Form';
 
 describe('Form', () => {
@@ -19,41 +20,42 @@ describe('Form', () => {
     expect(screen.getByRole('button', { name: /Submit/i })).toBeInTheDocument();
   });
 
-  // it('render error messages when submitting an empty form', async () => {
-  //   render(<Form />);
-  //   const button = screen.getByRole('button', { name: 'Submit' });
-  //   fireEvent.click(button);
-  //   await screen.findByText('Field is required');
-  //   // screen.getByText('Field is required');
-  //   // screen.getByText('Field is required');
-  //   // screen.getByText('Field is required');
-  //   // screen.getByText('Field is required');
-  //   // screen.getByText('Field is required');
-  // });
+  it('should must be an 6 errors, the fields are required', async () => {
+    render(<Form />);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
+    const count: number = (await screen.findAllByText('Field is required')).length;
+    expect(count).toEqual(6);
+  });
 
-  // it('save form data data if validation is successful', () => {
+  //
+
+  // it('save form data data if validation is successful', async () => {
   //   render(<Form />);
+  //   URL.createObjectURL = function (obj) {
+  //     return '';
+  //   };
   //   const inputText: HTMLInputElement = screen.getByRole('textbox', {
   //     name: 'First and last names:',
   //   });
   //   fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
-  //   expect(inputText.value).toBe('Oliver Peters');
+
   //   const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');
   //   fireEvent.change(inputDate, { target: { value: '1989-07-31' } });
-  //   expect(inputDate.value).toBe('1989-07-31');
-  //   const select: HTMLSelectElement = screen.getByRole('aria-selected', { name: 'Country:' });
+
+  //   const select: HTMLSelectElement = screen.getByRole('combobox', { name: 'Country:' });
   //   fireEvent.change(select, { target: { value: 'Poland' } });
-  //   expect(select.value).toBe('Poland');
+
   //   const inputCheckbox: HTMLInputElement = screen.getByRole('checkbox', {
   //     name: 'I agree with my personal data',
   //   });
   //   fireEvent.click(inputCheckbox);
-  //   expect(inputCheckbox.checked).toEqual(true);
+
   //   const inputRadio: HTMLInputElement = screen.getByRole('radio', {
   //     name: 'I want to receive notifications about promo, sales, etc.',
   //   });
   //   fireEvent.click(inputRadio);
-  //   expect(inputRadio).toBeChecked();
+
   //   const inputFile: HTMLInputElement = screen.getByLabelText('Upload a profile picture');
   //   fireEvent.change(inputFile, {
   //     target: {
@@ -64,10 +66,14 @@ describe('Form', () => {
   //       ],
   //     },
   //   });
-  //   const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-  //   fireEvent.click(btnSubmit);
-  //   expect(screen.findByText('Personal data saved'));
+
+  //   const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+  //   fireEvent.click(button);
+
+  //   await screen.findByText(/Personal data saved/i);
   // });
+
+  //
 
   it('should show error message be shown if the name field contains numbers', async () => {
     render(<Form />);
@@ -75,8 +81,8 @@ describe('Form', () => {
       name: 'First and last names:',
     });
     fireEvent.change(inputText, { target: { value: '11111' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
     await screen.findByText(
       'Enter the first and last name, with a capital letter (example: Alex Smit)'
     );
@@ -88,8 +94,8 @@ describe('Form', () => {
       name: 'First and last names:',
     });
     fireEvent.change(inputText, { target: { value: 'oliver Peters' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
     await screen.findByText(
       'Enter the first and last name, with a capital letter (example: Alex Smit)'
     );
@@ -101,8 +107,8 @@ describe('Form', () => {
       name: 'First and last names:',
     });
     fireEvent.change(inputText, { target: { value: 'Oliver peters' } });
-    const btnSubmit = screen.getByRole('button', { name: 'Submit' });
-    fireEvent.click(btnSubmit);
+    const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
+    fireEvent.click(button);
     await screen.findByText(
       'Enter the first and last name, with a capital letter (example: Alex Smit)'
     );
