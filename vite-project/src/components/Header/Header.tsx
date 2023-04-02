@@ -7,8 +7,6 @@ const mainClass = 'header';
 
 export const Header: () => JSX.Element = () => {
   const currentLocation = useLocation();
-
-  console.log(currentLocation);
   return (
     <>
       <header className={mainClass}>

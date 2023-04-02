@@ -37,5 +37,14 @@
       box-shadow: 0 0 0 0.2rem rgba(158, 156, 158, 0.5);
       outline: none;
     }
+
+    &--error {
+      border: 1px solid $color-red;
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba(250, 84, 87, 0.5);
+        outline: none;
+      }
+    }
   }
 }

@@ -10,13 +10,14 @@ export const Select: (props: ISelect) => JSX.Element = ({
   register,
   error,
 }: ISelect) => {
-  console.log(error);
-
+  const selectClass: string = error
+    ? `${mainClass}__select ${mainClass}__select--error`
+    : `${mainClass}__select`;
   return (
     <div className={mainClass}>
       <label className={`${mainClass}__label`}>
         {content}
-        <select defaultValue={defaultOption} className={`${mainClass}__select`} {...register}>
+        <select defaultValue={defaultOption} className={selectClass} {...register}>
           <option disabled>{defaultOption}</option>
           {options.map((value: string) => {
             return (
