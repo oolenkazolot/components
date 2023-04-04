@@ -1,16 +1,21 @@
 @import '../../style/variables.scss';
 
 .search {
-  position: relative;
   max-width: 300px;
   display: flex;
   align-items: center;
   margin: 20px auto 0 auto;
 
+  &__form {
+    position: relative;
+    width: 100%;
+  }
+
   &__icon {
     position: absolute;
     left: 5%;
-
+    top: 50%;
+    transform: translate(0, -50%);
     font-size: 20px;
     color: $color-main;
   }

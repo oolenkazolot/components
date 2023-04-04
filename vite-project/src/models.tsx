@@ -5,16 +5,12 @@ export interface IPageTitle {
 }
 
 export interface IProduct {
-  title: string;
-  description: string;
-  price: number;
-  discount: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  gender: string;
+  image: string;
 }
 
 export interface IFormValue {

@@ -1,10 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './search.scss';
 import '../../main.scss';
 const mainClass = 'search';
 
-export const Search: () => JSX.Element = () => {
-  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
+interface ISearch {
+  setSearch: (value: string) => void;
+  search: string;
+}
+
+export const Search: (props: ISearch) => JSX.Element = ({ setSearch, search }: ISearch) => {
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
   useEffect(() => {
@@ -15,17 +19,24 @@ export const Search: () => JSX.Element = () => {
     };
   }, []);
 
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setSearch(search);
+  };
+
   return (
     <section className={mainClass}>
-      <i className={`${mainClass}__icon icon-search`}></i>
-      <input
-        className={`${mainClass}__input`}
-        ref={inputRef}
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-        type="text"
-        placeholder="Search text..."
-      />
+      <form className={`${mainClass}__form`} onSubmit={onSubmit}>
+        <i className={`${mainClass}__icon icon-search`}></i>
+        <input
+          className={`${mainClass}__input`}
+          ref={inputRef}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Search text..."
+        />
+      </form>
     </section>
   );
 };

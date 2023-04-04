@@ -1,25 +1,37 @@
-import { Component } from 'react';
-import './products.scss';
+import { useState, useEffect } from 'react';
 import { Product } from '../Product/Product';
-import { productsData } from '../../utils/products-data';
+import './products.scss';
+import { IProduct } from '../../models';
+import { getProducts } from '../../utils/api';
+const mainClass = 'products';
 
-export class Products extends Component {
-  mainClass: string;
-  constructor(props: Component) {
-    super(props);
-    this.mainClass = 'products';
-  }
-
-  render() {
-    return (
-      <section className={this.mainClass}>
-        <h2 className={`${this.mainClass}__title`}>Products</h2>
-        <div className={`${this.mainClass}__list`}>
-          {productsData.products.map((product) => {
-            return <Product key={product.id} {...product} />;
-          })}
-        </div>
-      </section>
-    );
-  }
+interface IProducts {
+  search: string;
 }
+
+export const Products: (props: IProducts) => JSX.Element = ({ search }: IProducts) => {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [error, setError] = useState<null | Error>(null);
+  const [loaded, setLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    getProducts({ setProducts, setError, setLoaded, search });
+  }, [search]);
+
+  return (
+    <>
+      {error && <p>{error.message}</p>}
+      {!loaded && <p>Loading</p>}
+      {!error && loaded && (
+        <section className={mainClass}>
+          <h2 className={`${mainClass}__title`}>Products</h2>
+          <div className={`${mainClass}__list`}>
+            {products.map((product: IProduct) => {
+              return <Product key={product.id} {...product} />;
+            })}
+          </div>
+        </section>
+      )}
+    </>
+  );
+};
