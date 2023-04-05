@@ -28,12 +28,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-search:before {
-  content: '\e900';
+.icon-clear:before {
+  content: '\e902';
 }
-
 .icon-shopping-cart:before {
   content: '\e901';
+}
+.icon-search:before {
+  content: '\e900';
 }
 
 body {

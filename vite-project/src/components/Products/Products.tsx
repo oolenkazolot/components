@@ -24,7 +24,7 @@ export const Products: (props: IProducts) => JSX.Element = ({ search }: IProduct
       {!loaded && <p>Loading</p>}
       {!error && loaded && (
         <section className={mainClass}>
-          <h2 className={`${mainClass}__title`}>Products</h2>
+          <h2 className={`${mainClass}__title`}>Characters</h2>
           <div className={`${mainClass}__list`}>
             {products.map((product: IProduct) => {
               return <Product key={product.id} {...product} />;

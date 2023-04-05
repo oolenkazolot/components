@@ -10,6 +10,14 @@ export interface IProduct {
   status: string;
   species: string;
   gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
   image: string;
 }
 
@@ -33,7 +41,7 @@ export interface ICardForm {
 
 export interface IButton {
   className?: string;
-  content?: string;
+  content?: string | JSX.Element;
   attributes: Record<string, string | boolean>;
 }
 
