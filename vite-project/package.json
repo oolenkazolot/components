@@ -7,9 +7,10 @@
     "dev": "vite",
     "build": "npm run lint && tsc && vite build",
     "preview": "vite preview",
-    "lint": "npx eslint ./src",
     "lint-fix": "npx eslint ./src --fix",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && prettier --check .",
     "test": "vitest",
+    "format": "eslint . --ext .js,.jsx,.ts,.tsx --fix && prettier --write .",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
