@@ -3,6 +3,7 @@ import { Product } from '../Product/Product';
 import './products.scss';
 import { IProduct } from '../../models';
 import { getProducts } from '../../utils/api';
+import { Preloader } from '../Preloader/Preloader';
 const mainClass = 'products';
 
 interface IProducts {
@@ -20,11 +21,13 @@ export const Products: (props: IProducts) => JSX.Element = ({ search }: IProduct
 
   return (
     <>
-      {error && <p>{error.message}</p>}
-      {!loaded && <p>Loading</p>}
+      {error && <p className={`${mainClass}__error`}>{error.message}</p>}
+      {!loaded && <Preloader />}
       {!error && loaded && (
         <section className={mainClass}>
-          <h2 className={`${mainClass}__title`}>Characters</h2>
+          <h2 className={`${mainClass}__title`}>
+            <span className={`${mainClass}__content`}>Characters Rick i Morty</span>
+          </h2>
           <div className={`${mainClass}__list`}>
             {products.map((product: IProduct) => {
               return <Product key={product.id} {...product} />;

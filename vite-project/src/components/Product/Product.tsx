@@ -20,19 +20,16 @@ export const Product: (props: IProduct) => JSX.Element = ({
 
   return (
     <>
-      <div className={mainClass}>
-        <div className={`${mainClass}__title`}>{name}</div>
+      <div
+        className={mainClass}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
         <div className={`${mainClass}__display`}>
           <img className={`${mainClass}__img`} src={image} alt="product-img" />
         </div>
-        <button
-          className={`${mainClass}__btn-details`}
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          Details
-        </button>
+        <div className={`${mainClass}__title`}>{name}</div>
       </div>
       {
         <Modal
