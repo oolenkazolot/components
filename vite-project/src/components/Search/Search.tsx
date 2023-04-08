@@ -18,6 +18,7 @@ export const Search: (props: ISearch) => JSX.Element = ({ setSearch }: ISearch) 
 
   return (
     <section className={mainClass}>
+      <h2 className={`${mainClass}__title`}>Search Characters</h2>
       <form className={`${mainClass}__form`} onSubmit={onSubmit}>
         <i className={`${mainClass}__icon icon-search`}></i>
         <input

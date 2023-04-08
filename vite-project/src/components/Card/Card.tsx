@@ -1,20 +1,12 @@
 import '../../main.scss';
-import './product.scss';
-import { IProduct } from '../../models';
+import './Card.scss';
+import { ICard } from '../../models';
 import { useState } from 'react';
 import { Modal } from '../Modal/Modal';
-import { CartDetails } from '../CartDetails/CartDetails';
+import { CardDetails } from '../CardDetails/CardDetails';
 
-export const Product: (props: IProduct) => JSX.Element = ({
-  name,
-  status,
-  species,
-  gender,
-  origin,
-  location,
-  image,
-}: IProduct) => {
-  const mainClass = 'product';
+export const Card: (props: ICard) => JSX.Element = ({ name, image, id }: ICard) => {
+  const mainClass = 'card';
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -31,7 +23,7 @@ export const Product: (props: IProduct) => JSX.Element = ({
         </div>
         <div className={`${mainClass}__title`}>{name}</div>
       </div>
-      {
+      {isOpen && (
         <Modal
           classNameIcon="icon-clear"
           onCloseModal={() => {
@@ -39,17 +31,9 @@ export const Product: (props: IProduct) => JSX.Element = ({
           }}
           isOpen={isOpen}
         >
-          <CartDetails
-            name={name}
-            status={status}
-            species={species}
-            gender={gender}
-            origin={origin}
-            location={location}
-            image={image}
-          />
+          <CardDetails id={id} />
         </Modal>
-      }
+      )}
     </>
   );
 };

@@ -1,6 +1,7 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins.scss';
 
-.product {
+.card {
   padding: 10px;
 
   cursor: pointer;
@@ -19,9 +20,7 @@
     font-size: 18px;
     font-weight: 500;
     text-transform: capitalize;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include text-ellipsis;
   }
 
   &__display {

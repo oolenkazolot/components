@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Product } from '../Product/Product';
-import './products.scss';
-import { IProduct } from '../../models';
-import { getProducts } from '../../utils/api';
+import { Card } from '../Card/Card';
+import './cards.scss';
+import { ICard } from '../../models';
+import { getCards } from '../../utils/api';
 import { Preloader } from '../Preloader/Preloader';
-const mainClass = 'products';
+const mainClass = 'cards';
 
-interface IProducts {
+interface ICards {
   search: string;
 }
 
-export const Products: (props: IProducts) => JSX.Element = ({ search }: IProducts) => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+export const Cards: (props: ICards) => JSX.Element = ({ search }: ICards) => {
+  const [cards, setCards] = useState<ICard[]>([]);
   const [error, setError] = useState<null | Error>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    getProducts({ setProducts, setError, setLoaded, search });
+    getCards({ setCards, setError, setLoaded, search });
   }, [search]);
 
   return (
@@ -26,11 +26,11 @@ export const Products: (props: IProducts) => JSX.Element = ({ search }: IProduct
       {!error && loaded && (
         <section className={mainClass}>
           <h2 className={`${mainClass}__title`}>
-            <span className={`${mainClass}__content`}>Characters Rick i Morty</span>
+            <span className={`${mainClass}__content`}>Characters Rick and Morty</span>
           </h2>
           <div className={`${mainClass}__list`}>
-            {products.map((product: IProduct) => {
-              return <Product key={product.id} {...product} />;
+            {cards.map((card: ICard) => {
+              return <Card key={card.id} {...card} />;
             })}
           </div>
         </section>

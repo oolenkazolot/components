@@ -1,18 +1,25 @@
-import { IProduct } from '../models';
+import { ICard } from '../models';
 
-interface IGetProducts {
-  setProducts: (data: IProduct[]) => void;
+interface IGetCards {
+  setCards: (data: ICard[]) => void;
   setError: (error: Error | null) => void;
   setLoaded: (value: boolean) => void;
   search: string;
 }
 
-export const getProducts = async ({
-  setProducts,
+interface IGetCard {
+  id: number;
+  setCard: (data: ICard) => void;
+  setError: (error: null | Error) => void;
+  setLoaded: (value: boolean) => void;
+}
+
+export const getCards = async ({
+  setCards,
   setError,
   setLoaded,
   search,
-}: IGetProducts): Promise<void> => {
+}: IGetCards): Promise<void> => {
   const path: string = search
     ? `https://rickandmortyapi.com/api/character?name=${search}`
     : `https://rickandmortyapi.com/api/character`;
@@ -20,9 +27,30 @@ export const getProducts = async ({
   try {
     const response = await fetch(path);
     const result = await response.json();
+
     if (result.results) {
       setError(null);
-      setProducts(result.results);
+      setCards(result.results);
+    } else {
+      throw new Error('Error, data not received');
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      setError(error);
+    }
+  } finally {
+    setLoaded(true);
+  }
+};
+
+export const getCard = async ({ id, setCard, setError, setLoaded }: IGetCard): Promise<void> => {
+  try {
+    const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+    const result = await response.json();
+
+    if (result) {
+      setError(null);
+      setCard(result);
     } else {
       throw new Error('Error, data not received');
     }

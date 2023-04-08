@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PageTitle } from '../components/PageTitle/PageTitle';
-import { Products } from '../components/Products/Products';
+import { Cards } from '../components/Cards/Cards';
 import { Search } from '../components/Search/Search';
 const mainClass = 'main';
 export const HomePage: () => JSX.Element = () => {
@@ -11,7 +11,7 @@ export const HomePage: () => JSX.Element = () => {
       <main className={mainClass}>
         <PageTitle title="Home page" />
         <Search setSearch={setSearch} />
-        <Products search={search} />
+        <Cards search={search} />
       </main>
     </>
   );

@@ -4,7 +4,7 @@ export interface IPageTitle {
   title: string;
 }
 
-export interface IProduct {
+export interface ICard {
   id: number;
   name: string;
   status: string;
@@ -82,4 +82,12 @@ export interface ISelect {
   content: string;
   register: UseFormRegisterReturn<string>;
   error: FieldError | undefined;
+}
+
+export interface IModal {
+  className?: string;
+  children: JSX.Element;
+  onCloseModal: () => void;
+  classNameIcon: string;
+  isOpen: boolean;
 }

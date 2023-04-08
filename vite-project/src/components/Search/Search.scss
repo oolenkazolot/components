@@ -1,14 +1,20 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins.scss';
 
 .search {
   max-width: 300px;
-  display: flex;
   align-items: center;
-  margin: 20px auto 0 auto;
+  margin: 0 auto;
+
+  &__title {
+    @include title;
+    text-align: center;
+  }
 
   &__form {
     position: relative;
     width: 100%;
+    margin-top: 40px;
   }
 
   &__icon {

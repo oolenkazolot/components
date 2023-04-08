@@ -1,14 +1,7 @@
 import './Modal.scss';
+import { IModal } from '../../models';
 
 const mainClass = 'modal';
-
-interface IModal {
-  className?: string;
-  children: JSX.Element;
-  onCloseModal: () => void;
-  classNameIcon: string;
-  isOpen: boolean;
-}
 
 export const Modal: (props: IModal) => JSX.Element = ({
   children,

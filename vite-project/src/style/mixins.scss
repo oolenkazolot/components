@@ -11,3 +11,16 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@mixin title {
+  @include bg-text;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+@mixin error {
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: center;
+}
