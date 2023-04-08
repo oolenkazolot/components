@@ -4,17 +4,21 @@ export interface IPageTitle {
   title: string;
 }
 
-export interface IProduct {
-  title: string;
-  description: string;
-  price: number;
-  discount: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
+export interface ICard {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
 }
 
 export interface IFormValue {
@@ -37,7 +41,7 @@ export interface ICardForm {
 
 export interface IButton {
   className?: string;
-  content?: string;
+  content?: string | JSX.Element;
   attributes: Record<string, string | boolean>;
 }
 
@@ -78,4 +82,38 @@ export interface ISelect {
   content: string;
   register: UseFormRegisterReturn<string>;
   error: FieldError | undefined;
+}
+
+export interface IModal {
+  className?: string;
+  children: JSX.Element;
+  onCloseModal: () => void;
+  classNameIcon: string;
+  isOpen: boolean;
+}
+
+export interface ICardDetails {
+  id: number;
+}
+
+export interface ICards {
+  search: string;
+}
+
+export interface ISearch {
+  setSearch: (value: string) => void;
+}
+
+export interface IGetCards {
+  setCards: (data: ICard[]) => void;
+  setError: (error: Error | null) => void;
+  setLoaded: (value: boolean) => void;
+  search: string;
+}
+
+export interface IGetCard {
+  id: number;
+  setCard: (data: ICard) => void;
+  setError: (error: null | Error) => void;
+  setLoaded: (value: boolean) => void;
 }

@@ -1,15 +1,17 @@
+import { useState } from 'react';
 import { PageTitle } from '../components/PageTitle/PageTitle';
-import { Products } from '../components/Products/Products';
+import { Cards } from '../components/Cards/Cards';
 import { Search } from '../components/Search/Search';
 const mainClass = 'main';
 export const HomePage: () => JSX.Element = () => {
+  const [search, setSearch] = useState<string>(localStorage.getItem('searchValue') || '');
+
   return (
     <>
-      {/* <Header title="Home page" /> */}
       <main className={mainClass}>
         <PageTitle title="Home page" />
-        <Search />
-        <Products />
+        <Search setSearch={setSearch} />
+        <Cards search={search} />
       </main>
     </>
   );

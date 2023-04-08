@@ -6,7 +6,6 @@ const mainClass = 'form-page';
 export const FormPage: () => JSX.Element = () => {
   return (
     <>
-      {/* <Header title="Form" /> */}
       <main className="main">
         <PageTitle title="Form" />
         <section className={`${mainClass}__form`}>

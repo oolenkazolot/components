@@ -3,7 +3,7 @@ import { Search } from '../Search/Search';
 
 describe('Search', () => {
   it('render Search component', () => {
-    render(<Search />);
+    render(<Search setSearch={() => {}} />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Search text...')).toBeInTheDocument();
     expect(screen.getByDisplayValue(localStorage.getItem('searchValue') || '')).toBeInTheDocument();
@@ -12,7 +12,7 @@ describe('Search', () => {
 
 describe('Search', () => {
   it('render Search component', () => {
-    render(<Search />);
+    render(<Search setSearch={() => {}} />);
     expect(screen.getByDisplayValue(localStorage.getItem('searchValue') || '')).toBeInTheDocument();
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'React' },

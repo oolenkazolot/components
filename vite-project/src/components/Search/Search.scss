@@ -1,16 +1,27 @@
 @import '../../style/variables.scss';
+@import '../../style/mixins.scss';
 
 .search {
-  position: relative;
   max-width: 300px;
-  display: flex;
   align-items: center;
-  margin: 20px auto 0 auto;
+  margin: 0 auto;
+
+  &__title {
+    @include title;
+    text-align: center;
+  }
+
+  &__form {
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+  }
 
   &__icon {
     position: absolute;
     left: 5%;
-
+    top: 50%;
+    transform: translate(0, -50%);
     font-size: 20px;
     color: $color-main;
   }
@@ -28,7 +39,7 @@
     padding: 10px 15px 10px 45px;
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba(246, 14, 80, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(0, 175, 183, 0.5);
       outline: none;
     }
 

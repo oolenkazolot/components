@@ -1,11 +1,14 @@
 @import '../../style/variables.scss';
-.products {
-  margin-top: 30px;
+@import '../../style/mixins.scss';
+.cards {
+  margin-top: 40px;
 
   &__title {
-    color: $color-second;
-    font-size: 30px;
-    font-weight: 300;
+    text-align: center;
+  }
+
+  &__content {
+    @include title;
   }
 
   &__list {
@@ -14,5 +17,9 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     margin-top: 20px;
     margin-top: 20px;
+  }
+
+  &__error {
+    @include error;
   }
 }
