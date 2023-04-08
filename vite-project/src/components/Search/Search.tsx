@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import './search.scss';
 import '../../main.scss';
+import { ISearch } from '../../models';
 const mainClass = 'search';
-
-interface ISearch {
-  setSearch: (value: string) => void;
-}
 
 export const Search: (props: ISearch) => JSX.Element = ({ setSearch }: ISearch) => {
   const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');

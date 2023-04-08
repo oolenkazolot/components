@@ -1,18 +1,4 @@
-import { ICard } from '../models';
-
-interface IGetCards {
-  setCards: (data: ICard[]) => void;
-  setError: (error: Error | null) => void;
-  setLoaded: (value: boolean) => void;
-  search: string;
-}
-
-interface IGetCard {
-  id: number;
-  setCard: (data: ICard) => void;
-  setError: (error: null | Error) => void;
-  setLoaded: (value: boolean) => void;
-}
+import { IGetCard, IGetCards } from '../models';
 
 export const getCards = async ({
   setCards,

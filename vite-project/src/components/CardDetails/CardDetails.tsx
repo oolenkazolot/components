@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 import './CardDetails.scss';
-import { ICard } from '../../models';
+import { ICard, ICardDetails } from '../../models';
 import { getCard } from '../../utils/api';
 import { Preloader } from '../Preloader/Preloader';
-const mainClass = 'card-details';
 
-interface ICardDetails {
-  id: number;
-}
+const mainClass = 'card-details';
 
 export const CardDetails: (props: ICardDetails) => JSX.Element = ({ id }: ICardDetails) => {
   const [card, setCard] = useState<ICard | null>(null);

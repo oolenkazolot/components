@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Card } from '../Card/Card';
 import './cards.scss';
-import { ICard } from '../../models';
+import { ICard, ICards } from '../../models';
 import { getCards } from '../../utils/api';
 import { Preloader } from '../Preloader/Preloader';
 const mainClass = 'cards';
-
-interface ICards {
-  search: string;
-}
 
 export const Cards: (props: ICards) => JSX.Element = ({ search }: ICards) => {
   const [cards, setCards] = useState<ICard[]>([]);
