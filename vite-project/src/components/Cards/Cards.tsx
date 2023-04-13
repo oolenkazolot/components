@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Card } from '../Card/Card';
 import './cards.scss';
-import { ICard, ICards } from '../../models';
+import { ICard } from '../../models';
 import { getCards } from '../../utils/api';
 import { Preloader } from '../Preloader/Preloader';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../redux/store';
 const mainClass = 'cards';
 
-export const Cards: (props: ICards) => JSX.Element = ({ search }: ICards) => {
+export const Cards: () => JSX.Element = () => {
+  const search = useSelector((state: RootState) => state.search);
   const [cards, setCards] = useState<ICard[]>([]);
   const [error, setError] = useState<null | Error>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    getCards({ setCards, setError, setLoaded, search });
-  }, [search]);
+    getCards({ setCards, setError, setLoaded, search: search.value });
+  }, [search.value]);
 
   return (
     <>

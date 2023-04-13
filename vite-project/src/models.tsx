@@ -96,14 +96,6 @@ export interface ICardDetails {
   id: number;
 }
 
-export interface ICards {
-  search: string;
-}
-
-export interface ISearch {
-  setSearch: (value: string) => void;
-}
-
 export interface IGetCards {
   setCards: (data: ICard[]) => void;
   setError: (error: Error | null) => void;

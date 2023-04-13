@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import './search.scss';
 import '../../main.scss';
-import { ISearch } from '../../models';
+import type { RootState } from '../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
 const mainClass = 'search';
 
-export const Search: (props: ISearch) => JSX.Element = ({ setSearch }: ISearch) => {
-  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
+export const Search: () => JSX.Element = () => {
+  const search = useSelector((state: RootState) => state.search);
+  const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState<string>(search.value);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    localStorage.setItem('searchValue', searchValue);
-    setSearch(searchValue);
+    dispatch({ type: 'search/change', payload: searchValue });
   };
 
   return (
