@@ -1,6 +1,6 @@
 import { Card } from '../Card/Card';
 import './cards.scss';
-import { ICard, IGetCard } from '../../models';
+import { ICard } from '../../models';
 import { Preloader } from '../Preloader/Preloader';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';

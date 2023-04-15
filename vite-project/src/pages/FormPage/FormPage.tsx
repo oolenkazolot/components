@@ -1,5 +1,5 @@
-import { PageTitle } from '../components/PageTitle/PageTitle';
-import { Form } from '../components/Form/Form';
+import { PageTitle } from '../../components/PageTitle/PageTitle';
+import { Form } from '../../components/Form/Form';
 import './FormPage.scss';
 const mainClass = 'form-page';
 

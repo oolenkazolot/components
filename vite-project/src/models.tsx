@@ -96,13 +96,6 @@ export interface ICardDetails {
   id: number;
 }
 
-export interface IGetCards {
-  setCards: (data: ICard[]) => void;
-  setError: (error: Error | null) => void;
-  setLoaded: (value: boolean) => void;
-  search: string;
-}
-
 export interface IGetCard {
   results: ICard[];
   info: {

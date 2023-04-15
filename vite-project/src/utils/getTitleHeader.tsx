@@ -1,14 +1,12 @@
-export function getTitleHeader(pathname: string): string {
+export const getTitleHeader = (pathname: string): string => {
   switch (pathname) {
     case '/':
       return 'Home';
     case '/about':
       return 'About';
-
     case '/form':
-      return 'Form';
-
+      return 'Form Page';
     default:
-      return 'NotFoundPage';
+      return 'Not Found Page';
   }
-}
+};
