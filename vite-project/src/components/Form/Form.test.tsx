@@ -1,11 +1,17 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 import { Form } from './Form';
 
 describe('Form', () => {
   it('should render the basic fields', () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     expect(screen.getByText(/User Info/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/First and last names:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Birthday:/i)).toBeInTheDocument();
@@ -22,7 +28,11 @@ describe('Form', () => {
   });
 
   it('should must be an 6 errors, the fields are required', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const button: HTMLButtonElement = screen.getByRole('button', { name: 'Submit' });
     fireEvent.click(button);
     const count: number = (await screen.findAllByText('Field is required')).length;
@@ -30,7 +40,11 @@ describe('Form', () => {
   });
 
   it('save form data data if validation is successful', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     URL.createObjectURL = function (obj) {
       return obj.toString();
     };
@@ -63,7 +77,11 @@ describe('Form', () => {
   });
 
   it('should show error message be shown if the name field contains numbers', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const inputText: HTMLInputElement = screen.getByRole('textbox', {
       name: 'First and last names:',
     });
@@ -76,7 +94,11 @@ describe('Form', () => {
   });
 
   it('should show error message be shown if the name does not start with a capital letter', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const inputText: HTMLInputElement = screen.getByRole('textbox', {
       name: 'First and last names:',
     });
@@ -89,7 +111,11 @@ describe('Form', () => {
   });
 
   it('should show error message be shown if the surname does not start with a capital letter', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const inputText: HTMLInputElement = screen.getByRole('textbox', {
       name: 'First and last names:',
     });
@@ -102,7 +128,11 @@ describe('Form', () => {
   });
 
   it('the form must be cleared after the form is submitted', async () => {
-    render(<Form />);
+    render(
+      <Provider store={store}>
+        <Form />
+      </Provider>
+    );
     const inputText: HTMLInputElement = screen.getByLabelText('First and last names:');
     fireEvent.change(inputText, { target: { value: 'Oliver Peters' } });
     const inputDate: HTMLInputElement = screen.getByLabelText('Birthday:');

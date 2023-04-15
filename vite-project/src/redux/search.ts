@@ -1,17 +1,17 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
 interface ISearchState {
-  value: string;
+  search: string;
 }
 
 const initialState: ISearchState = {
-  value: '',
+  search: '',
 };
 
 export const changeSearch = createAction('search/change');
 
 export const searchReducer = createReducer(initialState, (builder) => {
   builder.addCase(changeSearch, (state, action) => {
-    state.value = action.payload || '';
+    state.search = action.payload || '';
   });
 });

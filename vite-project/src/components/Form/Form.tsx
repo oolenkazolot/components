@@ -15,9 +15,13 @@ import {
   isValidationDate,
   isValidationSelect,
 } from '../../utils/validation/validation';
+import type { RootState } from '../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
 const mainClass = 'form';
 
 export const Form: () => JSX.Element = () => {
+  const stateUserInfos = useSelector((state: RootState) => state.userInfos);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -26,12 +30,12 @@ export const Form: () => JSX.Element = () => {
   } = useForm<IFormValue>({ reValidateMode: 'onSubmit' });
 
   const [formSent, setFormSent] = useState<boolean>(false);
-  const [userInfos, setUserInfos] = useState<ICardForm[]>([]);
 
   const onSubmit = (data: IFormValue) => {
     const file: string = URL.createObjectURL(data.inputFile[0]);
     const item: ICardForm = { ...data, image: file };
-    setUserInfos([...userInfos, item]);
+    dispatch({ type: 'userInfos/add', payload: item });
+
     setFormSent(true);
     reset();
   };
@@ -120,7 +124,7 @@ export const Form: () => JSX.Element = () => {
         </div>
       </form>
       <div className={`${mainClass}__cards`}>
-        {userInfos.map((userInfo: ICardForm, index) => {
+        {stateUserInfos.userInfos.map((userInfo: ICardForm, index) => {
           return <CardForm key={index} {...userInfo} />;
         })}
       </div>

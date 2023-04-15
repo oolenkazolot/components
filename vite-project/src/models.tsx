@@ -104,8 +104,11 @@ export interface IGetCards {
 }
 
 export interface IGetCard {
-  id: number;
-  setCard: (data: ICard) => void;
-  setError: (error: null | Error) => void;
-  setLoaded: (value: boolean) => void;
+  results: ICard[];
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
 }

@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from 'react-redux';
 const mainClass = 'search';
 
 export const Search: () => JSX.Element = () => {
-  const search = useSelector((state: RootState) => state.search);
+  const stateSearch = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState<string>(search.value);
+  const [searchValue, setSearchValue] = useState<string>(stateSearch.search);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();

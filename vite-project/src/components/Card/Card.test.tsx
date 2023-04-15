@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { Card } from './Card';
 import { ICard } from '../../models';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 const card: ICard = {
   id: 1,
@@ -21,7 +23,11 @@ const card: ICard = {
 
 describe('Card', () => {
   it('render Card', () => {
-    render(<Card {...card} />);
+    render(
+      <Provider store={store}>
+        <Card {...card} />
+      </Provider>
+    );
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
     expect(screen.getAllByAltText('product-img'));
   });
