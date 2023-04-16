@@ -10,6 +10,7 @@ import { CardForm } from '../CardForm/CardForm';
 import { Message } from '../Message/Message';
 import { IFormValue, ICardForm } from '../../models';
 import { countries } from '../../utils/countries-data';
+
 import {
   isValidationName,
   isValidationDate,
@@ -31,10 +32,11 @@ export const Form: () => JSX.Element = () => {
 
   const [formSent, setFormSent] = useState<boolean>(false);
 
-  const onSubmit = (data: IFormValue) => {
+  const onSubmit = async (data: IFormValue) => {
     const file: string = URL.createObjectURL(data.inputFile[0]);
+
     const item: ICardForm = { ...data, image: file };
-    dispatch({ type: 'userInfos/add', payload: item });
+    dispatch({ type: 'userInfos/add', payload: JSON.stringify(item) });
 
     setFormSent(true);
     reset();
@@ -124,8 +126,8 @@ export const Form: () => JSX.Element = () => {
         </div>
       </form>
       <div className={`${mainClass}__cards`}>
-        {stateUserInfos.userInfos.map((userInfo: ICardForm, index) => {
-          return <CardForm key={index} {...userInfo} />;
+        {stateUserInfos.userInfos.map((userInfo: string, index) => {
+          return <CardForm key={index} {...JSON.parse(userInfo)} />;
         })}
       </div>
     </>

@@ -10,10 +10,7 @@ export const store = configureStore({
     userInfos: userInfosReducer,
     [cardApi.reducerPath]: cardApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(cardApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(cardApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
