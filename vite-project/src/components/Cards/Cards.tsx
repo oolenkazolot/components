@@ -3,12 +3,12 @@ import './cards.scss';
 import { ICard } from '../../models';
 import { Preloader } from '../Preloader/Preloader';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { useGetCardsQuery } from '../../redux/services/card';
 const mainClass = 'cards';
 
 export const Cards: () => JSX.Element = () => {
-  const stateSearch = useSelector((state: RootState) => state.search);
+  const stateSearch = useSelector((state: RootState) => state.reducer.search);
 
   const { data, error, isLoading, isFetching } = useGetCardsQuery(stateSearch.search);
 

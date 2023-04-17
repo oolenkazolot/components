@@ -10,18 +10,19 @@ import { CardForm } from '../CardForm/CardForm';
 import { Message } from '../Message/Message';
 import { IFormValue, ICardForm } from '../../models';
 import { countries } from '../../utils/countries-data';
+import { addUserInfos } from '../../redux/slices/userInfosSlice';
 
 import {
   isValidationName,
   isValidationDate,
   isValidationSelect,
 } from '../../utils/validation/validation';
-import type { RootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 const mainClass = 'form';
 
 export const Form: () => JSX.Element = () => {
-  const stateUserInfos = useSelector((state: RootState) => state.userInfos);
+  const stateUserInfos = useSelector((state: RootState) => state.reducer.userInfos);
   const dispatch = useDispatch();
   const {
     register,
@@ -36,8 +37,7 @@ export const Form: () => JSX.Element = () => {
     const file: string = URL.createObjectURL(data.inputFile[0]);
 
     const item: ICardForm = { ...data, image: file };
-    dispatch({ type: 'userInfos/add', payload: JSON.stringify(item) });
-
+    dispatch(addUserInfos(JSON.stringify(item)));
     setFormSent(true);
     reset();
   };

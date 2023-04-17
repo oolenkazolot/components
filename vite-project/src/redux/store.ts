@@ -1,19 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { searchReducer } from './search';
-import { userInfosReducer } from './userInfos';
+import rootReducer from './rootReducer';
 import { cardApi } from './services/card';
-import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
   reducer: {
-    search: searchReducer,
-    userInfos: userInfosReducer,
+    reducer: rootReducer,
     [cardApi.reducerPath]: cardApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(cardApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
 
-setupListeners(store.dispatch);
+export default store;
