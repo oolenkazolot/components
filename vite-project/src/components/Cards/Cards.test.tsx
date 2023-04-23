@@ -3,6 +3,9 @@ import createFetchMock from 'vitest-fetch-mock';
 import { beforeEach, describe, it, vi } from 'vitest';
 import { ICard } from '../../models';
 import { Cards } from './Cards';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
+import { cardApi } from '../../redux/services/card';
 const fetchMocker = createFetchMock(vi);
 const cards: ICard[] = [
   {
@@ -47,20 +50,34 @@ describe('testing api', () => {
 
   it('displays data cards', async () => {
     fetchMock.mockResponse(JSON.stringify({ results: cards }));
-    render(<Cards search="" />);
+    render(
+      <Provider store={store}>
+        <Cards />
+      </Provider>
+    );
     await screen.findByText('Rick Sanchez');
     await screen.findByText('Morty Smith');
   });
 
   it('displays data cards', async () => {
     fetchMock.mockResponse(JSON.stringify({ results: null }));
-    render(<Cards search="" />);
+    store.dispatch(cardApi.util.resetApiState());
+    render(
+      <Provider store={store}>
+        <Cards />
+      </Provider>
+    );
     await screen.findByText('Error, data not received');
   });
 
   it('shows an error on incorrect request', async () => {
     fetchMock.mockReject(new Error('Error, data not received'));
-    render(<Cards search="" />);
+    store.dispatch(cardApi.util.resetApiState());
+    render(
+      <Provider store={store}>
+        <Cards />
+      </Provider>
+    );
     await screen.findByText('Error, data not received');
   });
 });

@@ -9,6 +9,7 @@
 
   &__content {
     @include title;
+    line-height: 1.2;
   }
 
   &__list {

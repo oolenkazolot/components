@@ -96,24 +96,12 @@ export interface ICardDetails {
   id: number;
 }
 
-export interface ICards {
-  search: string;
-}
-
-export interface ISearch {
-  setSearch: (value: string) => void;
-}
-
-export interface IGetCards {
-  setCards: (data: ICard[]) => void;
-  setError: (error: Error | null) => void;
-  setLoaded: (value: boolean) => void;
-  search: string;
-}
-
 export interface IGetCard {
-  id: number;
-  setCard: (data: ICard) => void;
-  setError: (error: null | Error) => void;
-  setLoaded: (value: boolean) => void;
+  results: ICard[];
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
 }

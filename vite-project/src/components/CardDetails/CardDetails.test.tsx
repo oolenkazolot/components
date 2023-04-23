@@ -3,6 +3,9 @@ import createFetchMock from 'vitest-fetch-mock';
 import { CardDetails } from './CardDetails';
 import { beforeEach, describe, it, vi } from 'vitest';
 import { ICard } from '../../models';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
+import { cardApi } from '../../redux/services/card';
 const fetchMocker = createFetchMock(vi);
 
 const card: ICard = {
@@ -30,19 +33,34 @@ describe('testing api', () => {
 
   it('display detailed data card', async () => {
     fetchMock.mockResponse(JSON.stringify(card));
-    render(<CardDetails id={1} />);
+    store.dispatch(cardApi.util.resetApiState());
+    render(
+      <Provider store={store}>
+        <CardDetails id={1} />
+      </Provider>
+    );
     await screen.findByText('Rick Sanchez');
   });
 
   it('should show error message, if not received data from api', async () => {
     fetchMock.mockResponse(JSON.stringify(null));
-    render(<CardDetails id={1} />);
+    store.dispatch(cardApi.util.resetApiState());
+    render(
+      <Provider store={store}>
+        <CardDetails id={1} />
+      </Provider>
+    );
     await screen.findByText('Error, data not received');
   });
 
   it('should show error message, if an error was returned during the request to the api', async () => {
     fetchMock.mockReject(new Error('Error, data not received'));
-    render(<CardDetails id={1} />);
+    store.dispatch(cardApi.util.resetApiState());
+    render(
+      <Provider store={store}>
+        <CardDetails id={1} />
+      </Provider>
+    );
     await screen.findByText('Error, data not received');
   });
 });
