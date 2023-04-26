@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
 import { cardApi } from './services/card';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     reducer: rootReducer,
     [cardApi.reducerPath]: cardApi.reducer,

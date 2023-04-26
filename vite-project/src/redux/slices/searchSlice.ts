@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ISearchState {
+export interface ISearchState {
   search: string;
 }
 
