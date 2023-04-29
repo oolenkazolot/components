@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import { Router } from './router';
 import store from './redux/store';
 import './main.scss';
+import { RootState } from './redux/store';
 
-const preloadedState = (window as any).__PRELOADED_STATE__; // Get the initial state from the server
+const preloadedState = (window as Window & typeof globalThis & { __PRELOADED_STATE__: RootState })
+  .__PRELOADED_STATE__;
 
 ReactDOM.hydrateRoot(
   document.getElementById('app') as HTMLElement,

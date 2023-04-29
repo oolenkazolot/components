@@ -22,9 +22,9 @@
   },
   "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*"],
   "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
+    "transpileOnly": true
+    // "compilerOptions": {
+    //   "module": "CommonJS"
+    // }
   }
 }
