@@ -4,7 +4,7 @@ import { beforeEach, describe, it, vi } from 'vitest';
 import { ICard } from '../../models';
 import { Cards } from './Cards';
 import { Provider } from 'react-redux';
-import { store } from '../../redux/store';
+import store from '../../redux/store';
 import { cardApi } from '../../redux/services/card';
 const fetchMocker = createFetchMock(vi);
 const cards: ICard[] = [

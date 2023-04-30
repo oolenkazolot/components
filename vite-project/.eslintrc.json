@@ -46,5 +46,12 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["node_modules/*", "dist/*"]
+  "ignorePatterns": [
+    "node_modules/*",
+    "dist/*",
+    "cypress/*",
+    "coverage/*",
+    ".nyc_output/*",
+    "cypress-coverage/*"
+  ]
 }
