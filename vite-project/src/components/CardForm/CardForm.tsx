@@ -31,7 +31,9 @@ export const CardForm: (props: ICardForm) => JSX.Element = ({
             I don’t want to receive notifications about promo, sales, etc.
           </div>
         )}
-        {inputCheckbox && <div>I agree with my personal data</div>}
+        {inputCheckbox && (
+          <div className={`${mainClass}__info-item`}>I agree with my personal data</div>
+        )}
       </div>
     </div>
   );

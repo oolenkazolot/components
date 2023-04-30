@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Card } from './Card';
 import { ICard } from '../../models';
 import { Provider } from 'react-redux';
-import { store } from '../../redux/store';
+import store from '../../redux/store';
 
 const card: ICard = {
   id: 1,

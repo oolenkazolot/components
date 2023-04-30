@@ -5,5 +5,5 @@
     "types": ["cypress"]
   },
 
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "e2e/form.cy.ts", "e2e/card.cy.ts"]
 }
